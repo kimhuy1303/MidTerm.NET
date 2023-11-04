@@ -10,6 +10,7 @@ namespace MidTerm
         BLL_Feature bllFeature;
         BLL_Fuel bllFuel;
         BLL_Location bllLocation;
+        BLL_Customer bllCustomer;
         public bool isClose = true;
         public Font font = new Font("Arial", 9, FontStyle.Regular);
         public FormChuongTrinh()
@@ -47,7 +48,7 @@ namespace MidTerm
         {
             this.Controls.Clear();
             this.InitializeComponent();
-            this.FormChuongTrinh_Load(sender,e);
+            this.FormChuongTrinh_Load(sender, e);
 
         }
 
@@ -66,7 +67,11 @@ namespace MidTerm
 
         private void btnDatXe_Click(object sender, EventArgs e)
         {
-
+            DAO_Customer dCustomer = new DAO_Customer();
+            if (!dCustomer.checkIsExists(txtCCCD.Text))
+            {
+                bllCustomer.addCustomer(txtName.Text, txtCCCD.Text, txtPhoneNum.Text, cbGender.Text, txtAddress.Text);
+            }
         }
     }
 }

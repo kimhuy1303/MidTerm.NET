@@ -64,6 +64,9 @@
             label6 = new Label();
             label5 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            panel5 = new Panel();
+            txtSearchCustomer = new TextBox();
+            btnSearchCustomer = new Button();
             menuStrip1.SuspendLayout();
             pnLeft.SuspendLayout();
             panel4.SuspendLayout();
@@ -72,6 +75,7 @@
             panel1.SuspendLayout();
             pnRight.SuspendLayout();
             groupBox1.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -206,23 +210,24 @@
             // 
             panel2.Controls.Add(pnFeature);
             panel2.Controls.Add(lblFeatureCar);
-            panel2.Location = new Point(24, 214);
+            panel2.Location = new Point(24, 238);
             panel2.Name = "panel2";
-            panel2.Size = new Size(642, 144);
+            panel2.Size = new Size(642, 120);
             panel2.TabIndex = 3;
             // 
             // pnFeature
             // 
-            pnFeature.Location = new Point(27, 32);
+            pnFeature.AutoScroll = true;
+            pnFeature.Location = new Point(27, 28);
             pnFeature.Name = "pnFeature";
-            pnFeature.Size = new Size(603, 104);
+            pnFeature.Size = new Size(603, 86);
             pnFeature.TabIndex = 2;
             // 
             // lblFeatureCar
             // 
             lblFeatureCar.AutoSize = true;
             lblFeatureCar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblFeatureCar.Location = new Point(22, 10);
+            lblFeatureCar.Location = new Point(23, 8);
             lblFeatureCar.Name = "lblFeatureCar";
             lblFeatureCar.Size = new Size(86, 19);
             lblFeatureCar.TabIndex = 0;
@@ -234,7 +239,7 @@
             panel1.Controls.Add(lblCategoryCar);
             panel1.Location = new Point(24, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(642, 205);
+            panel1.Size = new Size(642, 229);
             panel1.TabIndex = 2;
             // 
             // pnCar
@@ -242,7 +247,7 @@
             pnCar.AutoScroll = true;
             pnCar.Location = new Point(22, 26);
             pnCar.Name = "pnCar";
-            pnCar.Size = new Size(608, 176);
+            pnCar.Size = new Size(608, 200);
             pnCar.TabIndex = 1;
             // 
             // lblCategoryCar
@@ -268,6 +273,7 @@
             // 
             // pnRight
             // 
+            pnRight.Controls.Add(panel5);
             pnRight.Controls.Add(btnReset);
             pnRight.Controls.Add(btnDatXe);
             pnRight.Controls.Add(groupBox1);
@@ -296,7 +302,7 @@
             btnDatXe.Name = "btnDatXe";
             btnDatXe.Size = new Size(131, 61);
             btnDatXe.TabIndex = 15;
-            btnDatXe.Text = "Đặt xe";
+            btnDatXe.Text = "Thuê xe";
             btnDatXe.UseVisualStyleBackColor = true;
             btnDatXe.Click += btnDatXe_Click;
             // 
@@ -313,7 +319,7 @@
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
             groupBox1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(21, 7);
+            groupBox1.Location = new Point(21, 78);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(463, 309);
             groupBox1.TabIndex = 3;
@@ -423,6 +429,35 @@
             sqlCommand1.Notification = null;
             sqlCommand1.Transaction = null;
             // 
+            // panel5
+            // 
+            panel5.Controls.Add(btnSearchCustomer);
+            panel5.Controls.Add(txtSearchCustomer);
+            panel5.Location = new Point(21, 7);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(463, 65);
+            panel5.TabIndex = 17;
+            // 
+            // txtSearchCustomer
+            // 
+            txtSearchCustomer.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchCustomer.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSearchCustomer.Location = new Point(16, 18);
+            txtSearchCustomer.Name = "txtSearchCustomer";
+            txtSearchCustomer.Size = new Size(292, 26);
+            txtSearchCustomer.TabIndex = 0;
+            // 
+            // btnSearchCustomer
+            // 
+            btnSearchCustomer.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSearchCustomer.ForeColor = Color.Blue;
+            btnSearchCustomer.Location = new Point(329, 3);
+            btnSearchCustomer.Name = "btnSearchCustomer";
+            btnSearchCustomer.Size = new Size(131, 59);
+            btnSearchCustomer.TabIndex = 18;
+            btnSearchCustomer.Text = "Tìm kiếm";
+            btnSearchCustomer.UseVisualStyleBackColor = true;
+            // 
             // FormChuongTrinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -452,6 +487,8 @@
             pnRight.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -494,5 +531,8 @@
         private Button btnDatXe;
         private FlowLayoutPanel pnCar;
         public ToolStripMenuItem managementTool;
+        private Panel panel5;
+        private TextBox txtSearchCustomer;
+        private Button btnSearchCustomer;
     }
 }
