@@ -50,6 +50,9 @@
             lblCategoryCar = new Label();
             lblHeading = new Label();
             pnRight = new Panel();
+            panel5 = new Panel();
+            btnSearchCustomer = new Button();
+            txtSearchCustomer = new TextBox();
             btnReset = new Button();
             btnDatXe = new Button();
             groupBox1 = new GroupBox();
@@ -64,9 +67,6 @@
             label6 = new Label();
             label5 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            panel5 = new Panel();
-            txtSearchCustomer = new TextBox();
-            btnSearchCustomer = new Button();
             menuStrip1.SuspendLayout();
             pnLeft.SuspendLayout();
             panel4.SuspendLayout();
@@ -74,8 +74,8 @@
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             pnRight.SuspendLayout();
-            groupBox1.SuspendLayout();
             panel5.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -282,6 +282,35 @@
             pnRight.Size = new Size(487, 559);
             pnRight.TabIndex = 3;
             // 
+            // panel5
+            // 
+            panel5.Controls.Add(btnSearchCustomer);
+            panel5.Controls.Add(txtSearchCustomer);
+            panel5.Location = new Point(21, 7);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(463, 65);
+            panel5.TabIndex = 17;
+            // 
+            // btnSearchCustomer
+            // 
+            btnSearchCustomer.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSearchCustomer.ForeColor = Color.Blue;
+            btnSearchCustomer.Location = new Point(329, 3);
+            btnSearchCustomer.Name = "btnSearchCustomer";
+            btnSearchCustomer.Size = new Size(131, 59);
+            btnSearchCustomer.TabIndex = 18;
+            btnSearchCustomer.Text = "Tìm kiếm";
+            btnSearchCustomer.UseVisualStyleBackColor = true;
+            // 
+            // txtSearchCustomer
+            // 
+            txtSearchCustomer.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchCustomer.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSearchCustomer.Location = new Point(16, 18);
+            txtSearchCustomer.Name = "txtSearchCustomer";
+            txtSearchCustomer.Size = new Size(292, 26);
+            txtSearchCustomer.TabIndex = 0;
+            // 
             // btnReset
             // 
             btnReset.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
@@ -429,35 +458,6 @@
             sqlCommand1.Notification = null;
             sqlCommand1.Transaction = null;
             // 
-            // panel5
-            // 
-            panel5.Controls.Add(btnSearchCustomer);
-            panel5.Controls.Add(txtSearchCustomer);
-            panel5.Location = new Point(21, 7);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(463, 65);
-            panel5.TabIndex = 17;
-            // 
-            // txtSearchCustomer
-            // 
-            txtSearchCustomer.BorderStyle = BorderStyle.FixedSingle;
-            txtSearchCustomer.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSearchCustomer.Location = new Point(16, 18);
-            txtSearchCustomer.Name = "txtSearchCustomer";
-            txtSearchCustomer.Size = new Size(292, 26);
-            txtSearchCustomer.TabIndex = 0;
-            // 
-            // btnSearchCustomer
-            // 
-            btnSearchCustomer.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSearchCustomer.ForeColor = Color.Blue;
-            btnSearchCustomer.Location = new Point(329, 3);
-            btnSearchCustomer.Name = "btnSearchCustomer";
-            btnSearchCustomer.Size = new Size(131, 59);
-            btnSearchCustomer.TabIndex = 18;
-            btnSearchCustomer.Text = "Tìm kiếm";
-            btnSearchCustomer.UseVisualStyleBackColor = true;
-            // 
             // FormChuongTrinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -485,10 +485,10 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             pnRight.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

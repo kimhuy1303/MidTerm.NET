@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -73,9 +74,17 @@ namespace MidTerm
 
         bool checkLogin(string username, string password)
         {
+            byte[] temp = ASCIIEncoding.ASCII.GetBytes(password);
+            byte[] hashData = new MD5CryptoServiceProvider().ComputeHash(temp);
+
+            string hashPassword = "";
+            foreach (byte data in hashData)
+            {
+                hashPassword += data.ToString();
+            }
             using (var context = new MainDbContext())
             {
-                var res = context.Accounts?.Where(account => account.Username == username && account.Password == password).FirstOrDefault();
+                var res = context.Accounts?.Where(account => account.Username == username && account.Password == hashPassword).FirstOrDefault();
                 if (res != null)
                 {
                     var role = context.Roles.Where(p => p.Id == res.RoleId).FirstOrDefault();
