@@ -859,6 +859,7 @@
             btnAddCustomer.TabIndex = 0;
             btnAddCustomer.Text = "Thêm";
             btnAddCustomer.UseVisualStyleBackColor = false;
+            btnAddCustomer.Click += btnAddCustomer_Click;
             // 
             // tpBill
             // 

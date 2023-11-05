@@ -22,7 +22,7 @@ namespace MidTerm
 
        public bool checkIsExists(string cccd)
         {
-            var checkCCCD = _context.Customers.Find(cccd);
+            var checkCCCD = _context.Customers.Where(r => r.CCCD == cccd).FirstOrDefault();
 
             return checkCCCD != null ? true : false;
         }

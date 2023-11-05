@@ -141,13 +141,25 @@ namespace MidTerm
                 txtCCCD.Text = result.CCCD;
                 txtPhoneNum.Text = result.PhoneNumber;
                 txtAddress.Text = result.Address;
-                customerList.DataSource = result;
                 txtSearchCustomer.Clear();
             }
             else
             {
                 MessageBox.Show("Người dùng không tồn tại!");
                 txtSearchCustomer.Clear();
+            }
+        }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bllCustomer.addCustomer(txtNameCustomer.Text, txtCCCD.Text, txtPhoneNum.Text, txtGender.Text, txtAddress.Text);
+                MessageBox.Show("Thêm mới thành công");
+            }
+            catch 
+            {
+                MessageBox.Show("Đã có ngưởi dùng sở hữu thông tin CCCD. Vui lòng điền lại thông tin CCCD mới!");
             }
         }
     }
