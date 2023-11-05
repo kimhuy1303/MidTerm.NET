@@ -43,5 +43,11 @@ namespace MidTerm
                 _context.SaveChanges();
             
         }
+
+        public Customer searchCustomerByName(string name)
+        {
+            var res = _context.Customers.Where(c => c.CustomerName == name).FirstOrDefault();
+            return res;
+        }
     }
 }

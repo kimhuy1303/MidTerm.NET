@@ -1,4 +1,4 @@
-
+﻿
 using MidTerm.BLL;
 
 namespace MidTerm
@@ -20,6 +20,7 @@ namespace MidTerm
             bllFeature = new BLL_Feature();
             bllFuel = new BLL_Fuel();
             bllLocation = new BLL_Location();
+            bllCustomer = new BLL_Customer();
         }
 
         private void FormChuongTrinh_Load(object sender, EventArgs e)
@@ -71,6 +72,25 @@ namespace MidTerm
             if (!dCustomer.checkIsExists(txtCCCD.Text))
             {
                 bllCustomer.addCustomer(txtName.Text, txtCCCD.Text, txtPhoneNum.Text, cbGender.Text, txtAddress.Text);
+            }
+        }
+
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            Customer result = bllCustomer.searchCustomerByName(txtSearchCustomer.Text);
+            if(result != null)
+            {
+                txtName.Text = result.CustomerName;
+                cbGender.Text = result.Gender; 
+                txtCCCD.Text = result.CCCD;
+                txtPhoneNum.Text = result.PhoneNumber;
+                txtAddress.Text = result.Address;
+                txtSearchCustomer.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Người dùng không tồn tại!");
+                txtSearchCustomer.Clear();
             }
         }
     }

@@ -301,6 +301,7 @@
             btnSearchCustomer.TabIndex = 18;
             btnSearchCustomer.Text = "Tìm kiếm";
             btnSearchCustomer.UseVisualStyleBackColor = true;
+            btnSearchCustomer.Click += btnSearchCustomer_Click;
             // 
             // txtSearchCustomer
             // 

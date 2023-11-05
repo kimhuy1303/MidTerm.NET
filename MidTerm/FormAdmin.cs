@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace MidTerm
 {
@@ -51,7 +52,7 @@ namespace MidTerm
 
         private void FormAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!isClose) 
+            if (!isClose)
             {
                 Application.Exit();
             }
@@ -130,6 +131,24 @@ namespace MidTerm
             bllCar.DeleteCar(int.Parse(txtCarId.Text));
         }
 
-        
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            Customer result = bllCustomer.searchCustomerByName(txtSearchCustomer.Text);
+            if (result != null)
+            {
+                txtNameCustomer.Text = result.CustomerName;
+                txtGender.Text = result.Gender;
+                txtCCCD.Text = result.CCCD;
+                txtPhoneNum.Text = result.PhoneNumber;
+                txtAddress.Text = result.Address;
+                customerList.DataSource = result;
+                txtSearchCustomer.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Người dùng không tồn tại!");
+                txtSearchCustomer.Clear();
+            }
+        }
     }
 }

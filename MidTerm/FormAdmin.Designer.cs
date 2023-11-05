@@ -784,6 +784,7 @@
             btnSearchCustomer.TabIndex = 3;
             btnSearchCustomer.Text = "Tìm kiếm";
             btnSearchCustomer.UseVisualStyleBackColor = false;
+            btnSearchCustomer.Click += btnSearchCustomer_Click;
             // 
             // panel19
             // 

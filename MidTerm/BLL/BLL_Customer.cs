@@ -26,6 +26,11 @@ namespace MidTerm
                 dCustomer.addCustomer(name, cccd, phoneNum, gender, address);
             }
         }
+
+        public Customer searchCustomerByName(string name)
+        {
+            return dCustomer.searchCustomerByName(name);
+        }
        
     }
 }
