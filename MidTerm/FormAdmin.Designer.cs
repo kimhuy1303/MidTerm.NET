@@ -837,6 +837,7 @@
             btnDeleteCustomer.TabIndex = 2;
             btnDeleteCustomer.Text = "Xóa";
             btnDeleteCustomer.UseVisualStyleBackColor = false;
+            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnEditCustomer
             // 

@@ -84,13 +84,13 @@ namespace MidTerm
         }
         public void AddCar(string fuelName,CarDTO cardto)
         {
-            try
+            if (!dCar.checkCarExists(cardto.CarName, cardto.Description))
             {
-                dCar.AddCar(fuelName,cardto);
-                MessageBox.Show("Thêm thành công");
+                dCar.AddCar(fuelName, cardto);
             }
-            catch {
-                MessageBox.Show("Thêm thất bại");
+            else
+            {
+                MessageBox.Show("Xe đã tồn tại");
             }
         }
 

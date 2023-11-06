@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MidTerm.BLL
 {
-    internal class BLL_BillInfo
+    public class BLL_BillInfo
     {
     }
 }

@@ -29,8 +29,6 @@ namespace MidTerm
 
         public void addCustomer(string name, string cccd, string phoneNum, string gender,string address) 
         {
-            
-            
                 var customer = new Customer
                 {
                     CustomerName = name,
@@ -44,10 +42,17 @@ namespace MidTerm
             
         }
 
-        public Customer searchCustomerByName(string name)
+        public List<Customer> searchCustomerByName(string name)
         {
-            var res = _context.Customers.Where(c => c.CustomerName == name).FirstOrDefault();
+            var res = _context.Customers.Where(c => c.CustomerName.Contains(name)).ToList();
             return res;
+        }
+
+        public void deleteCustomer(int id)
+        {
+            var res = _context.Customers.Find(id);
+            _context.Remove(res);
+            _context.SaveChanges();
         }
     }
 }

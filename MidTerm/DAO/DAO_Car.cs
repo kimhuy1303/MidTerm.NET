@@ -46,6 +46,12 @@ namespace MidTerm
         }
         #endregion
 
+        public bool checkCarExists(string name, string description)
+        {
+            var check = _context.Cars.FirstOrDefault(e => e.CarName == name && e.Description == description);
+            return check == null ? false : true;
+        }
+
         public void UpdateCar(int id, CarDTO carDTO) 
         {
         }

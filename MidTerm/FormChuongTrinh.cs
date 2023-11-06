@@ -77,20 +77,26 @@ namespace MidTerm
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
         {
-            Customer result = bllCustomer.searchCustomerByName(txtSearchCustomer.Text);
-            if(result != null)
+            if (String.IsNullOrEmpty(txtSearchCustomer.Text))
             {
-                txtName.Text = result.CustomerName;
-                cbGender.Text = result.Gender; 
-                txtCCCD.Text = result.CCCD;
-                txtPhoneNum.Text = result.PhoneNumber;
-                txtAddress.Text = result.Address;
+                MessageBox.Show("Cần nhập thông tin để tìm kiếm");
+                return;
+            }
+            List<Customer> result = bllCustomer.searchCustomerByName(txtSearchCustomer.Text);
+            if(result.Count != 0)
+            {
+                txtName.Text = result[0].CustomerName;
+                cbGender.Text = result[0].Gender; 
+                txtCCCD.Text = result[0].CCCD;
+                txtPhoneNum.Text = result[0].PhoneNumber;
+                txtAddress.Text = result[0].Address;
                 txtSearchCustomer.Clear();
             }
             else
             {
                 MessageBox.Show("Người dùng không tồn tại!");
                 txtSearchCustomer.Clear();
+                return;
             }
         }
     }

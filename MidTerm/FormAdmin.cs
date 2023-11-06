@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MidTerm.BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,7 @@ namespace MidTerm
         BLL_Schedule bllSchedule;
         BLL_Car bllCar;
         BLL_Customer bllCustomer;
+        BLL_BillInfo bllBillInfo;
         BindingSource scheduleList = new BindingSource();
         BindingSource carList = new BindingSource();
         BindingSource customerList = new BindingSource();
@@ -27,6 +29,7 @@ namespace MidTerm
             bllSchedule = new BLL_Schedule();
             bllCar = new BLL_Car();
             bllCustomer = new BLL_Customer();
+            bllBillInfo = new BLL_BillInfo();
             LoadData();
 
         }
@@ -59,6 +62,7 @@ namespace MidTerm
 
         }
 
+        #region load datagridview
         void loadSchedule()
         {
             dtgvSchedule.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -76,7 +80,9 @@ namespace MidTerm
             dtgvCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             bllCustomer.DisplayCustomerDtgv(customerList);
         }
+        #endregion
 
+        #region Binding data
         void AddCarBinding()
         {
             txtCarId.DataBindings.Add(new Binding("Text", dtgvCar.DataSource, "Id", true, DataSourceUpdateMode.Never));
@@ -96,21 +102,29 @@ namespace MidTerm
             txtCCCD.DataBindings.Add(new Binding("Text", dtgvCustomer.DataSource, "CCCD", true, DataSourceUpdateMode.Never));
             txtAddress.DataBindings.Add(new Binding("Text", dtgvCustomer.DataSource, "Address", true, DataSourceUpdateMode.Never));
         }
+        #endregion
 
+        #region Schedule 
         private void btnReadSchedule_Click(object sender, EventArgs e)
         {
             loadSchedule();
         }
+        #endregion
 
+        #region Car
         private void btnReadCarList_Click_1(object sender, EventArgs e)
         {
             loadCarList();
-
         }
 
         private void btnAddCar_Click(object sender, EventArgs e)
         {
             CarDTO car = new CarDTO();
+            if((double)numCarPrice.Value < 0)
+            {
+                MessageBox.Show("Giá xe cần phải lớn hơn 0");
+                numCarPrice.Value = 1;
+            }
             car.CarName = txtCarName.Text;
             car.Price = (double)numCarPrice.Value;
             car.Description = txtDescription.Text;
@@ -118,30 +132,36 @@ namespace MidTerm
             bllCar.AddCar(txtCarFuel.Text, car);
         }
 
-        private void btnReadCustomer_Click(object sender, EventArgs e)
-        {
-
-            loadCustomerList();
-
-        }
-
         private void btnDeleteCar_Click(object sender, EventArgs e)
         {
 
             bllCar.DeleteCar(int.Parse(txtCarId.Text));
+            loadCarList();
+        }
+        #endregion
+
+        #region Customer
+        private void btnReadCustomer_Click(object sender, EventArgs e)
+        {
+            loadCustomerList();
         }
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
         {
-            Customer result = bllCustomer.searchCustomerByName(txtSearchCustomer.Text);
-            if (result != null)
+            if (txtSearchCustomer.Text == "")
             {
-                txtNameCustomer.Text = result.CustomerName;
-                txtGender.Text = result.Gender;
-                txtCCCD.Text = result.CCCD;
-                txtPhoneNum.Text = result.PhoneNumber;
-                txtAddress.Text = result.Address;
-                txtSearchCustomer.Clear();
+                MessageBox.Show("Vui lòng nhập tên cần tìm kiếm ");
+                txtSearchCustomer.Focus();
+                loadCustomerList();
+                return;
+            }
+            var result = bllCustomer.searchCustomerByName(txtSearchCustomer.Text);
+            if (result.Count != 0)
+            {
+                dtgvCustomer.DataSource = null;
+                customerList.Clear();
+                customerList.DataSource = result;
+                dtgvCustomer.DataSource = customerList;
             }
             else
             {
@@ -152,15 +172,34 @@ namespace MidTerm
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            try
+            if (txtNameCustomer.Text == "" && txtCCCD.Text == "")
+            {
+                MessageBox.Show("Cần điền ít nhất thông tin tên hoặc cccd để thêm mới khách hàng!");
+                txtNameCustomer.Focus();
+            }
+            else
             {
                 bllCustomer.addCustomer(txtNameCustomer.Text, txtCCCD.Text, txtPhoneNum.Text, txtGender.Text, txtAddress.Text);
-                MessageBox.Show("Thêm mới thành công");
-            }
-            catch 
-            {
-                MessageBox.Show("Đã có ngưởi dùng sở hữu thông tin CCCD. Vui lòng điền lại thông tin CCCD mới!");
+                loadCustomerList();
             }
         }
+
+        private void btnDeleteCustomer_Click(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Are you sure you want to Delete", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (res == DialogResult.OK)
+            {
+                bllCustomer.deleteCustomer(int.Parse(txtCustomerId.Text));
+                loadCustomerList();
+            }
+            else
+            {
+                return;
+            }
+        }
+        #endregion
+
+        #region Bill
+        #endregion
     }
 }
