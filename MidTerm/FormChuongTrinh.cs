@@ -8,7 +8,6 @@ namespace MidTerm
 
         BLL_Car bllCar;
         BLL_Feature bllFeature;
-        BLL_Fuel bllFuel;
         BLL_Location bllLocation;
         BLL_Customer bllCustomer;
         public bool isClose = true;
@@ -18,7 +17,6 @@ namespace MidTerm
             InitializeComponent();
             bllCar = new BLL_Car();
             bllFeature = new BLL_Feature();
-            bllFuel = new BLL_Fuel();
             bllLocation = new BLL_Location();
             bllCustomer = new BLL_Customer();
         }
@@ -27,7 +25,6 @@ namespace MidTerm
         {
             bllCar.DisplayCarList(new Button(), pnCar);
             bllFeature.displayFeatureList(new CheckBox(), pnFeature);
-            bllFuel.displayFuelRadioBtn(new RadioButton(), pnFuel);
             bllLocation.DisplayLocation(cbLocation);
         }
 
@@ -83,10 +80,10 @@ namespace MidTerm
                 return;
             }
             List<Customer> result = bllCustomer.searchCustomerByName(txtSearchCustomer.Text);
-            if(result.Count != 0)
+            if (result.Count != 0)
             {
                 txtName.Text = result[0].CustomerName;
-                cbGender.Text = result[0].Gender; 
+                cbGender.Text = result[0].Gender;
                 txtCCCD.Text = result[0].CCCD;
                 txtPhoneNum.Text = result[0].PhoneNumber;
                 txtAddress.Text = result[0].Address;

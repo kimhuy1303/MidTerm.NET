@@ -40,7 +40,6 @@
             label3 = new Label();
             label2 = new Label();
             panel3 = new Panel();
-            pnFuel = new FlowLayoutPanel();
             label1 = new Label();
             panel2 = new Panel();
             pnFeature = new FlowLayoutPanel();
@@ -67,6 +66,7 @@
             label6 = new Label();
             label5 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            comboBox1 = new ComboBox();
             menuStrip1.SuspendLayout();
             pnLeft.SuspendLayout();
             panel4.SuspendLayout();
@@ -182,35 +182,28 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(pnFuel);
+            panel3.Controls.Add(comboBox1);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(24, 358);
+            panel3.Location = new Point(24, 390);
             panel3.Name = "panel3";
-            panel3.Size = new Size(642, 74);
+            panel3.Size = new Size(642, 42);
             panel3.TabIndex = 4;
-            // 
-            // pnFuel
-            // 
-            pnFuel.Location = new Point(27, 32);
-            pnFuel.Name = "pnFuel";
-            pnFuel.Size = new Size(603, 33);
-            pnFuel.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(26, 10);
+            label1.Location = new Point(27, 10);
             label1.Name = "label1";
-            label1.Size = new Size(85, 19);
+            label1.Size = new Size(72, 19);
             label1.TabIndex = 2;
-            label1.Text = "Nhiên liệu";
+            label1.Text = "Hãng xe";
             // 
             // panel2
             // 
             panel2.Controls.Add(pnFeature);
             panel2.Controls.Add(lblFeatureCar);
-            panel2.Location = new Point(24, 238);
+            panel2.Location = new Point(24, 264);
             panel2.Name = "panel2";
             panel2.Size = new Size(642, 120);
             panel2.TabIndex = 3;
@@ -239,7 +232,7 @@
             panel1.Controls.Add(lblCategoryCar);
             panel1.Location = new Point(24, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(642, 229);
+            panel1.Size = new Size(642, 255);
             panel1.TabIndex = 2;
             // 
             // pnCar
@@ -247,7 +240,7 @@
             pnCar.AutoScroll = true;
             pnCar.Location = new Point(22, 26);
             pnCar.Name = "pnCar";
-            pnCar.Size = new Size(608, 200);
+            pnCar.Size = new Size(608, 226);
             pnCar.TabIndex = 1;
             // 
             // lblCategoryCar
@@ -459,6 +452,15 @@
             sqlCommand1.Notification = null;
             sqlCommand1.Transaction = null;
             // 
+            // comboBox1
+            // 
+            comboBox1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(125, 7);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(90, 26);
+            comboBox1.TabIndex = 10;
+            // 
             // FormChuongTrinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -515,7 +517,6 @@
         private Label label1;
         private DateTimePicker dateTimePicker2;
         private FlowLayoutPanel pnFeature;
-        private FlowLayoutPanel pnFuel;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Label label5;
         private GroupBox groupBox1;
@@ -535,5 +536,6 @@
         private Panel panel5;
         private TextBox txtSearchCustomer;
         private Button btnSearchCustomer;
+        private ComboBox comboBox1;
     }
 }

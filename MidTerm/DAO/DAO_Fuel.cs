@@ -12,11 +12,5 @@ namespace MidTerm {
         {
             _context = new MainDbContext(); 
         }
-
-        public List<string> getFuelList()
-        {
-            var fuels = _context.Fuels!.Select(e => e.FuelName).ToList();
-            return fuels!;
-        }
     }
 }

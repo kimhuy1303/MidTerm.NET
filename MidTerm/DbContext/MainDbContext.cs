@@ -19,6 +19,7 @@ namespace MidTerm
         public DbSet<Fuel>? Fuels { get; set; }
         public DbSet<Location>? Locations { get; set; }
         public DbSet<Schedule>? Schedules { get; set; }
+        public DbSet<Brand> Brands { get; set; }
       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,6 +41,14 @@ namespace MidTerm
                         .WithMany(f => f.Cars)
                         .UsingEntity<FeatureCar>(
                             l => l.HasOne<Feature>().WithMany().HasForeignKey(e => e.FeatureId),
+                            r => r.HasOne<Car>().WithMany().HasForeignKey(e => e.CarId));
+
+            // Mỗi xe có nhiều thương hiệu, mỗi thương hiệu có nhiều loại xe
+            modelBuilder.Entity<Car>()
+                        .HasMany(e => e.Brands)
+                        .WithMany(f => f.Cars)
+                        .UsingEntity<BrandCar>(
+                            l => l.HasOne<Brand>().WithMany().HasForeignKey(e => e.BrandId),
                             r => r.HasOne<Car>().WithMany().HasForeignKey(e => e.CarId));
 
             //Mỗi xe chỉ sử dụng 1 loại nhiên liệu, mỗi loại nhiên liệu được sử dụng cho nhiều xe

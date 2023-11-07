@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MidTerm;
 
@@ -11,9 +12,10 @@ using MidTerm;
 namespace MidTerm.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231107134215_createBrandTable")]
+    partial class createBrandTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,21 +124,6 @@ namespace MidTerm.Migrations
                     b.HasKey("BrandId");
 
                     b.ToTable("Brands");
-                });
-
-            modelBuilder.Entity("MidTerm.BrandCar", b =>
-                {
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CarId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BrandId", "CarId");
-
-                    b.HasIndex("CarId");
-
-                    b.ToTable("BrandCar");
                 });
 
             modelBuilder.Entity("MidTerm.Car", b =>
@@ -358,21 +345,6 @@ namespace MidTerm.Migrations
                     b.Navigation("Location");
 
                     b.Navigation("Schedule");
-                });
-
-            modelBuilder.Entity("MidTerm.BrandCar", b =>
-                {
-                    b.HasOne("MidTerm.Brand", null)
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MidTerm.Car", null)
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MidTerm.Car", b =>

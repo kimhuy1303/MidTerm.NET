@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace MidTerm
 {
-    public class BLL_Fuel
+    public class BrandCar
     {
-        DAO_Fuel dFuel;
-        public BLL_Fuel()
-        {
-            dFuel = new DAO_Fuel();
-        }
-
+        public int CarId { get; set; }
+        public int BrandId { get; set; }
     }
 }

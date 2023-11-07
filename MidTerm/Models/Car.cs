@@ -26,5 +26,6 @@ namespace MidTerm
         public int FuelId { get; set; }
         public Fuel? Fuel { get; set; }
         public ICollection<BillInfo> BillInfos { get; } = new List<BillInfo>();
+        public ICollection<Brand> Brands { get; } = new List<Brand>();
     }
 }
