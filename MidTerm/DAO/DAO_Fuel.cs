@@ -12,5 +12,10 @@ namespace MidTerm {
         {
             _context = new MainDbContext(); 
         }
+        public string GetFuelName(int id)
+        {
+            var res = _context.Fuels.FirstOrDefault(f => f.Id == id);
+            return res.FuelName;
+        }
     }
 }

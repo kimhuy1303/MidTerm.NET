@@ -13,7 +13,7 @@ namespace MidTerm
         public int Id { get; set; }
         [MaxLength(100)]
         public string? FeatureName { get; set; }
-
-        public ICollection<Car> Cars { get; } = new List<Car>();
+        public double FeaturePrice { get; set; }
+        public List<Bill> Bills { get; set; }
     }
 }

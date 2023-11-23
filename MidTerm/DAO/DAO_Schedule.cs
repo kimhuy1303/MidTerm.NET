@@ -14,10 +14,25 @@ namespace MidTerm
             _context = new MainDbContext();
         }
 
-        public dynamic getSchedule()
+        public dynamic getScheduleList()
         {
             var schedules = _context.BillInfos!.Select(e => new { e.Customer!.CustomerName, e.Car!.CarName, e.Schedule.PickUpDate, e.Schedule.DropOffDate, e.Location.LocationName, e.Car!.Status}).ToList();
             return schedules;
+        }
+
+        public dynamic getSchedule()
+        {
+            var res = _context.Schedules.OrderByDescending(e => e.Id).FirstOrDefault();
+            return res;
+        }
+
+        public void addSchedule(ScheduleDTO scheduledto)
+        {
+            var schedule = new Schedule();
+            schedule.PickUpDate = scheduledto.PickupDate;
+            schedule.DropOffDate = scheduledto.DropoffDate;
+            _context.Schedules.Add(schedule);
+            _context.SaveChanges();
         }
     }
 }

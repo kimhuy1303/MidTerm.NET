@@ -19,6 +19,7 @@ namespace MidTerm.BLL
             cb.DataSource = dLocation.GetLocation();
             cb.DisplayMember = "LocationName";
             cb.ValueMember = "Id";
+            cb.Text = "Chọn địa điểm";
         }
     }
 }

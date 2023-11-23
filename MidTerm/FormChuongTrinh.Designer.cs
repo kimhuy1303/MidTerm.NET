@@ -33,14 +33,12 @@
             managementTool = new ToolStripMenuItem();
             pnLeft = new Panel();
             panel4 = new Panel();
-            dateTimePicker2 = new DateTimePicker();
+            dtpDropOff = new DateTimePicker();
             cbLocation = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
+            dtpPickUp = new DateTimePicker();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            panel3 = new Panel();
-            label1 = new Label();
             panel2 = new Panel();
             pnFeature = new FlowLayoutPanel();
             lblFeatureCar = new Label();
@@ -49,6 +47,8 @@
             lblCategoryCar = new Label();
             lblHeading = new Label();
             pnRight = new Panel();
+            numDeposit = new NumericUpDown();
+            label10 = new Label();
             panel5 = new Panel();
             btnSearchCustomer = new Button();
             txtSearchCustomer = new TextBox();
@@ -66,14 +66,13 @@
             label6 = new Label();
             label5 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            comboBox1 = new ComboBox();
             menuStrip1.SuspendLayout();
             pnLeft.SuspendLayout();
             panel4.SuspendLayout();
-            panel3.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             pnRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numDeposit).BeginInit();
             panel5.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -83,7 +82,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { LogoutTool, managementTool });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1216, 24);
+            menuStrip1.Size = new Size(1217, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -104,34 +103,35 @@
             // pnLeft
             // 
             pnLeft.Controls.Add(panel4);
-            pnLeft.Controls.Add(panel3);
             pnLeft.Controls.Add(panel2);
             pnLeft.Controls.Add(panel1);
             pnLeft.Location = new Point(12, 65);
             pnLeft.Name = "pnLeft";
-            pnLeft.Size = new Size(688, 559);
+            pnLeft.Size = new Size(688, 694);
             pnLeft.TabIndex = 1;
             // 
             // panel4
             // 
-            panel4.Controls.Add(dateTimePicker2);
+            panel4.Controls.Add(dtpDropOff);
             panel4.Controls.Add(cbLocation);
-            panel4.Controls.Add(dateTimePicker1);
+            panel4.Controls.Add(dtpPickUp);
             panel4.Controls.Add(label4);
             panel4.Controls.Add(label3);
             panel4.Controls.Add(label2);
-            panel4.Location = new Point(24, 432);
+            panel4.Location = new Point(24, 565);
             panel4.Name = "panel4";
             panel4.Size = new Size(642, 122);
             panel4.TabIndex = 5;
             // 
-            // dateTimePicker2
+            // dtpDropOff
             // 
-            dateTimePicker2.CalendarFont = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker2.Location = new Point(404, 66);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(189, 23);
-            dateTimePicker2.TabIndex = 9;
+            dtpDropOff.CalendarFont = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpDropOff.CustomFormat = "dd-MM-yyyy";
+            dtpDropOff.Format = DateTimePickerFormat.Custom;
+            dtpDropOff.Location = new Point(422, 65);
+            dtpDropOff.Name = "dtpDropOff";
+            dtpDropOff.Size = new Size(120, 23);
+            dtpDropOff.TabIndex = 9;
             // 
             // cbLocation
             // 
@@ -139,16 +139,19 @@
             cbLocation.FormattingEnabled = true;
             cbLocation.Location = new Point(125, 10);
             cbLocation.Name = "cbLocation";
-            cbLocation.Size = new Size(189, 26);
+            cbLocation.Size = new Size(204, 26);
             cbLocation.TabIndex = 7;
+            cbLocation.SelectionChangeCommitted += cbLocation_SelectionChangeCommitted;
             // 
-            // dateTimePicker1
+            // dtpPickUp
             // 
-            dateTimePicker1.CalendarFont = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Location = new Point(125, 66);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(189, 23);
-            dateTimePicker1.TabIndex = 8;
+            dtpPickUp.CalendarFont = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dtpPickUp.CustomFormat = "dd-MM-yyyy";
+            dtpPickUp.Format = DateTimePickerFormat.Custom;
+            dtpPickUp.Location = new Point(125, 66);
+            dtpPickUp.Name = "dtpPickUp";
+            dtpPickUp.Size = new Size(121, 23);
+            dtpPickUp.TabIndex = 8;
             // 
             // label4
             // 
@@ -180,30 +183,11 @@
             label2.TabIndex = 4;
             label2.Text = "Điểm đến";
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(comboBox1);
-            panel3.Controls.Add(label1);
-            panel3.Location = new Point(24, 390);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(642, 42);
-            panel3.TabIndex = 4;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(27, 10);
-            label1.Name = "label1";
-            label1.Size = new Size(72, 19);
-            label1.TabIndex = 2;
-            label1.Text = "Hãng xe";
-            // 
             // panel2
             // 
             panel2.Controls.Add(pnFeature);
             panel2.Controls.Add(lblFeatureCar);
-            panel2.Location = new Point(24, 264);
+            panel2.Location = new Point(24, 439);
             panel2.Name = "panel2";
             panel2.Size = new Size(642, 120);
             panel2.TabIndex = 3;
@@ -232,7 +216,7 @@
             panel1.Controls.Add(lblCategoryCar);
             panel1.Location = new Point(24, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(642, 255);
+            panel1.Size = new Size(642, 430);
             panel1.TabIndex = 2;
             // 
             // pnCar
@@ -240,7 +224,7 @@
             pnCar.AutoScroll = true;
             pnCar.Location = new Point(22, 26);
             pnCar.Name = "pnCar";
-            pnCar.Size = new Size(608, 226);
+            pnCar.Size = new Size(608, 401);
             pnCar.TabIndex = 1;
             // 
             // lblCategoryCar
@@ -266,6 +250,8 @@
             // 
             // pnRight
             // 
+            pnRight.Controls.Add(numDeposit);
+            pnRight.Controls.Add(label10);
             pnRight.Controls.Add(panel5);
             pnRight.Controls.Add(btnReset);
             pnRight.Controls.Add(btnDatXe);
@@ -274,6 +260,26 @@
             pnRight.Name = "pnRight";
             pnRight.Size = new Size(487, 559);
             pnRight.TabIndex = 3;
+            // 
+            // numDeposit
+            // 
+            numDeposit.BorderStyle = BorderStyle.FixedSingle;
+            numDeposit.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            numDeposit.Location = new Point(152, 398);
+            numDeposit.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
+            numDeposit.Name = "numDeposit";
+            numDeposit.Size = new Size(178, 26);
+            numDeposit.TabIndex = 19;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(37, 400);
+            label10.Name = "label10";
+            label10.Size = new Size(92, 18);
+            label10.TabIndex = 18;
+            label10.Text = "Tiền đặt cọc";
             // 
             // panel5
             // 
@@ -309,7 +315,7 @@
             // 
             btnReset.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnReset.ForeColor = Color.Red;
-            btnReset.Location = new Point(299, 482);
+            btnReset.Location = new Point(336, 482);
             btnReset.Name = "btnReset";
             btnReset.Size = new Size(131, 61);
             btnReset.TabIndex = 16;
@@ -321,7 +327,7 @@
             // 
             btnDatXe.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnDatXe.ForeColor = Color.Blue;
-            btnDatXe.Location = new Point(83, 482);
+            btnDatXe.Location = new Point(37, 482);
             btnDatXe.Name = "btnDatXe";
             btnDatXe.Size = new Size(131, 61);
             btnDatXe.TabIndex = 15;
@@ -452,20 +458,11 @@
             sqlCommand1.Notification = null;
             sqlCommand1.Transaction = null;
             // 
-            // comboBox1
-            // 
-            comboBox1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(125, 7);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(90, 26);
-            comboBox1.TabIndex = 10;
-            // 
             // FormChuongTrinh
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1216, 636);
+            ClientSize = new Size(1217, 761);
             Controls.Add(pnRight);
             Controls.Add(pnLeft);
             Controls.Add(menuStrip1);
@@ -481,13 +478,13 @@
             pnLeft.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             pnRight.ResumeLayout(false);
+            pnRight.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numDeposit).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -509,13 +506,10 @@
         private Label lblHeading;
         private Panel panel4;
         private ComboBox cbLocation;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpPickUp;
         private Label label4;
         private Label label3;
-        private Label label2;
-        private Panel panel3;
-        private Label label1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dtpDropOff;
         private FlowLayoutPanel pnFeature;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Label label5;
@@ -536,6 +530,8 @@
         private Panel panel5;
         private TextBox txtSearchCustomer;
         private Button btnSearchCustomer;
-        private ComboBox comboBox1;
+        private Label label2;
+        private NumericUpDown numDeposit;
+        private Label label10;
     }
 }

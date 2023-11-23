@@ -14,5 +14,11 @@ namespace MidTerm
             dFuel = new DAO_Fuel();
         }
 
+        public void GetFuelNameField(int id, TextBox txb)
+        {
+            var res = dFuel.GetFuelName(id);
+            txb.Text = res;
+        }
+
     }
 }

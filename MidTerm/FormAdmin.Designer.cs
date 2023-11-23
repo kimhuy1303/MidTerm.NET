@@ -28,13 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tcAdmin = new TabControl();
             tpDashboard = new TabPage();
+            comboBox1 = new ComboBox();
+            label28 = new Label();
+            label24 = new Label();
+            cbMonth = new ComboBox();
+            chartRevenuePie = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel48 = new Panel();
+            lbBills = new Label();
+            label31 = new Label();
+            panel47 = new Panel();
+            lbCustomers = new Label();
+            label27 = new Label();
+            panel46 = new Panel();
+            lbCars = new Label();
+            label26 = new Label();
+            panel45 = new Panel();
+            lbRevenue = new Label();
+            label25 = new Label();
+            chartRevenue = new System.Windows.Forms.DataVisualization.Charting.Chart();
             tpCar = new TabPage();
             panel1 = new Panel();
             panel5 = new Panel();
+            panel44 = new Panel();
+            txtBrandCar = new TextBox();
+            label23 = new Label();
             panel39 = new Panel();
-            txtDescription = new TextBox();
+            txtCategoryCar = new TextBox();
             label21 = new Label();
             panel10 = new Panel();
             txtCarFuel = new TextBox();
@@ -57,7 +86,7 @@
             panel3 = new Panel();
             dtgvCar = new DataGridView();
             panel2 = new Panel();
-            btnReadCarList = new Button();
+            btnImportCarList = new Button();
             btnDeleteCar = new Button();
             btnEditCar = new Button();
             btnAddCar = new Button();
@@ -88,7 +117,7 @@
             panel19 = new Panel();
             dtgvCustomer = new DataGridView();
             panel20 = new Panel();
-            btnReadCustomer = new Button();
+            btnExportCustomerList = new Button();
             btnDeleteCustomer = new Button();
             btnEditCustomer = new Button();
             btnAddCustomer = new Button();
@@ -100,7 +129,7 @@
             label15 = new Label();
             btnThanhToan = new Button();
             panel43 = new Panel();
-            txtTotalPrice = new TextBox();
+            numCost = new NumericUpDown();
             label22 = new Label();
             panel25 = new Panel();
             txtCarOfBill = new TextBox();
@@ -117,7 +146,6 @@
             panel29 = new Panel();
             dtgvBillInfo = new DataGridView();
             panel30 = new Panel();
-            btnEditBill = new Button();
             btnReadBill = new Button();
             tpSchedule = new TabPage();
             panel32 = new Panel();
@@ -130,10 +158,10 @@
             txtDestination = new TextBox();
             label11 = new Label();
             panel34 = new Panel();
-            dtDropOffDate = new DateTimePicker();
+            tbDropoffDate = new TextBox();
             label16 = new Label();
             panel35 = new Panel();
-            dtPickUpDate = new DateTimePicker();
+            tbPickupDate = new TextBox();
             label17 = new Label();
             panel37 = new Panel();
             txtCarOfSchedule = new TextBox();
@@ -148,12 +176,19 @@
             dtgvSchedule = new DataGridView();
             panel42 = new Panel();
             btnReadSchedule = new Button();
-            menuStrip1 = new MenuStrip();
-            LogoutToolAdmin = new ToolStripMenuItem();
             tcAdmin.SuspendLayout();
+            tpDashboard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartRevenuePie).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            panel48.SuspendLayout();
+            panel47.SuspendLayout();
+            panel46.SuspendLayout();
+            panel45.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartRevenue).BeginInit();
             tpCar.SuspendLayout();
             panel1.SuspendLayout();
             panel5.SuspendLayout();
+            panel44.SuspendLayout();
             panel39.SuspendLayout();
             panel10.SuspendLayout();
             panel9.SuspendLayout();
@@ -183,6 +218,7 @@
             panel22.SuspendLayout();
             panel31.SuspendLayout();
             panel43.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
             panel25.SuspendLayout();
             panel26.SuspendLayout();
             panel27.SuspendLayout();
@@ -203,7 +239,6 @@
             panel41.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvSchedule).BeginInit();
             panel42.SuspendLayout();
-            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // tcAdmin
@@ -218,9 +253,17 @@
             tcAdmin.SelectedIndex = 0;
             tcAdmin.Size = new Size(897, 524);
             tcAdmin.TabIndex = 0;
+            tcAdmin.Selected += tcAdmin_Selected;
             // 
             // tpDashboard
             // 
+            tpDashboard.Controls.Add(comboBox1);
+            tpDashboard.Controls.Add(label28);
+            tpDashboard.Controls.Add(label24);
+            tpDashboard.Controls.Add(cbMonth);
+            tpDashboard.Controls.Add(chartRevenuePie);
+            tpDashboard.Controls.Add(tableLayoutPanel1);
+            tpDashboard.Controls.Add(chartRevenue);
             tpDashboard.Location = new Point(4, 24);
             tpDashboard.Name = "tpDashboard";
             tpDashboard.Padding = new Padding(3);
@@ -228,6 +271,220 @@
             tpDashboard.TabIndex = 0;
             tpDashboard.Text = "Thống kê";
             tpDashboard.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Tên", "Loại", "Hãng" });
+            comboBox1.Location = new Point(167, 124);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(84, 26);
+            comboBox1.TabIndex = 7;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label28.Location = new Point(12, 127);
+            label28.Name = "label28";
+            label28.Size = new Size(149, 19);
+            label28.TabIndex = 6;
+            label28.Text = "Doanh thu theo xe";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label24.Location = new Point(523, 128);
+            label24.Name = "label24";
+            label24.Size = new Size(175, 19);
+            label24.TabIndex = 5;
+            label24.Text = "Doanh thu theo tháng";
+            // 
+            // cbMonth
+            // 
+            cbMonth.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cbMonth.FormattingEnabled = true;
+            cbMonth.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
+            cbMonth.Location = new Point(707, 125);
+            cbMonth.Name = "cbMonth";
+            cbMonth.Size = new Size(57, 26);
+            cbMonth.TabIndex = 4;
+            cbMonth.SelectedValueChanged += cbMonth_SelectedValueChanged;
+            // 
+            // chartRevenuePie
+            // 
+            chartArea1.Name = "ChartArea1";
+            chartRevenuePie.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chartRevenuePie.Legends.Add(legend1);
+            chartRevenuePie.Location = new Point(12, 167);
+            chartRevenuePie.Name = "chartRevenuePie";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Revenue";
+            chartRevenuePie.Series.Add(series1);
+            chartRevenuePie.Size = new Size(392, 301);
+            chartRevenuePie.TabIndex = 3;
+            chartRevenuePie.Text = "chart1";
+            title1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            title1.Name = "Title1";
+            title1.Text = "Revenue By Car ";
+            chartRevenuePie.Titles.Add(title1);
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel1.Controls.Add(panel48, 3, 0);
+            tableLayoutPanel1.Controls.Add(panel47, 2, 0);
+            tableLayoutPanel1.Controls.Add(panel46, 1, 0);
+            tableLayoutPanel1.Controls.Add(panel45, 0, 0);
+            tableLayoutPanel1.Location = new Point(6, 6);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(877, 93);
+            tableLayoutPanel1.TabIndex = 2;
+            // 
+            // panel48
+            // 
+            panel48.BackColor = Color.Silver;
+            panel48.Controls.Add(lbBills);
+            panel48.Controls.Add(label31);
+            panel48.Location = new Point(660, 3);
+            panel48.Name = "panel48";
+            panel48.Size = new Size(213, 87);
+            panel48.TabIndex = 2;
+            // 
+            // lbBills
+            // 
+            lbBills.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbBills.Location = new Point(70, 38);
+            lbBills.Name = "lbBills";
+            lbBills.Size = new Size(140, 23);
+            lbBills.TabIndex = 1;
+            lbBills.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label31.Location = new Point(3, 4);
+            label31.Name = "label31";
+            label31.Size = new Size(85, 19);
+            label31.TabIndex = 0;
+            label31.Text = "Đơn hàng";
+            // 
+            // panel47
+            // 
+            panel47.BackColor = Color.Khaki;
+            panel47.Controls.Add(lbCustomers);
+            panel47.Controls.Add(label27);
+            panel47.Location = new Point(441, 3);
+            panel47.Name = "panel47";
+            panel47.Size = new Size(213, 87);
+            panel47.TabIndex = 2;
+            // 
+            // lbCustomers
+            // 
+            lbCustomers.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbCustomers.Location = new Point(70, 38);
+            lbCustomers.Name = "lbCustomers";
+            lbCustomers.Size = new Size(140, 23);
+            lbCustomers.TabIndex = 1;
+            lbCustomers.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label27.Location = new Point(3, 4);
+            label27.Name = "label27";
+            label27.Size = new Size(102, 19);
+            label27.TabIndex = 0;
+            label27.Text = "Khách hàng";
+            // 
+            // panel46
+            // 
+            panel46.BackColor = Color.MediumPurple;
+            panel46.Controls.Add(lbCars);
+            panel46.Controls.Add(label26);
+            panel46.Location = new Point(222, 3);
+            panel46.Name = "panel46";
+            panel46.Size = new Size(213, 87);
+            panel46.TabIndex = 2;
+            // 
+            // lbCars
+            // 
+            lbCars.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbCars.Location = new Point(70, 38);
+            lbCars.Name = "lbCars";
+            lbCars.Size = new Size(140, 23);
+            lbCars.TabIndex = 1;
+            lbCars.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label26.Location = new Point(3, 4);
+            label26.Name = "label26";
+            label26.Size = new Size(29, 19);
+            label26.TabIndex = 0;
+            label26.Text = "Xe";
+            // 
+            // panel45
+            // 
+            panel45.BackColor = Color.CornflowerBlue;
+            panel45.Controls.Add(lbRevenue);
+            panel45.Controls.Add(label25);
+            panel45.Location = new Point(3, 3);
+            panel45.Name = "panel45";
+            panel45.Size = new Size(213, 87);
+            panel45.TabIndex = 0;
+            // 
+            // lbRevenue
+            // 
+            lbRevenue.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbRevenue.Location = new Point(73, 38);
+            lbRevenue.Name = "lbRevenue";
+            lbRevenue.Size = new Size(140, 23);
+            lbRevenue.TabIndex = 1;
+            lbRevenue.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label25.Location = new Point(3, 4);
+            label25.Name = "label25";
+            label25.Size = new Size(89, 19);
+            label25.TabIndex = 0;
+            label25.Text = "Doanh thu";
+            // 
+            // chartRevenue
+            // 
+            chartArea2.Name = "ChartArea";
+            chartRevenue.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            chartRevenue.Legends.Add(legend2);
+            chartRevenue.Location = new Point(487, 167);
+            chartRevenue.Name = "chartRevenue";
+            chartRevenue.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
+            series2.ChartArea = "ChartArea";
+            series2.Legend = "Legend1";
+            series2.Name = "Revenue";
+            chartRevenue.Series.Add(series2);
+            chartRevenue.Size = new Size(376, 311);
+            chartRevenue.TabIndex = 0;
+            chartRevenue.Text = "chart1";
             // 
             // tpCar
             // 
@@ -253,6 +510,7 @@
             // 
             // panel5
             // 
+            panel5.Controls.Add(panel44);
             panel5.Controls.Add(panel39);
             panel5.Controls.Add(panel10);
             panel5.Controls.Add(panel9);
@@ -264,25 +522,55 @@
             panel5.Size = new Size(341, 388);
             panel5.TabIndex = 3;
             // 
+            // panel44
+            // 
+            panel44.Controls.Add(txtBrandCar);
+            panel44.Controls.Add(label23);
+            panel44.Location = new Point(3, 326);
+            panel44.Name = "panel44";
+            panel44.Size = new Size(335, 42);
+            panel44.TabIndex = 4;
+            // 
+            // txtBrandCar
+            // 
+            txtBrandCar.BackColor = SystemColors.Window;
+            txtBrandCar.BorderStyle = BorderStyle.FixedSingle;
+            txtBrandCar.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBrandCar.Location = new Point(133, 9);
+            txtBrandCar.Multiline = true;
+            txtBrandCar.Name = "txtBrandCar";
+            txtBrandCar.Size = new Size(199, 22);
+            txtBrandCar.TabIndex = 1;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label23.Location = new Point(9, 12);
+            label23.Name = "label23";
+            label23.Size = new Size(109, 19);
+            label23.TabIndex = 0;
+            label23.Text = "Thương hiệu";
+            // 
             // panel39
             // 
-            panel39.Controls.Add(txtDescription);
+            panel39.Controls.Add(txtCategoryCar);
             panel39.Controls.Add(label21);
             panel39.Location = new Point(3, 278);
             panel39.Name = "panel39";
-            panel39.Size = new Size(335, 83);
+            panel39.Size = new Size(335, 42);
             panel39.TabIndex = 3;
             // 
-            // txtDescription
+            // txtCategoryCar
             // 
-            txtDescription.BackColor = SystemColors.Window;
-            txtDescription.BorderStyle = BorderStyle.FixedSingle;
-            txtDescription.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDescription.Location = new Point(133, 9);
-            txtDescription.Multiline = true;
-            txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(199, 71);
-            txtDescription.TabIndex = 1;
+            txtCategoryCar.BackColor = SystemColors.Window;
+            txtCategoryCar.BorderStyle = BorderStyle.FixedSingle;
+            txtCategoryCar.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCategoryCar.Location = new Point(133, 9);
+            txtCategoryCar.Multiline = true;
+            txtCategoryCar.Name = "txtCategoryCar";
+            txtCategoryCar.Size = new Size(199, 22);
+            txtCategoryCar.TabIndex = 1;
             // 
             // label21
             // 
@@ -290,9 +578,9 @@
             label21.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label21.Location = new Point(9, 12);
             label21.Name = "label21";
-            label21.Size = new Size(60, 19);
+            label21.Size = new Size(69, 19);
             label21.TabIndex = 0;
-            label21.Text = "Mô tả :";
+            label21.Text = "Thể loại";
             // 
             // panel10
             // 
@@ -470,6 +758,7 @@
             btnSearchCar.TabIndex = 3;
             btnSearchCar.Text = "Tìm kiếm";
             btnSearchCar.UseVisualStyleBackColor = false;
+            btnSearchCar.Click += btnSearchCar_Click;
             // 
             // panel3
             // 
@@ -490,7 +779,7 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(btnReadCarList);
+            panel2.Controls.Add(btnImportCarList);
             panel2.Controls.Add(btnDeleteCar);
             panel2.Controls.Add(btnEditCar);
             panel2.Controls.Add(btnAddCar);
@@ -499,17 +788,17 @@
             panel2.Size = new Size(503, 61);
             panel2.TabIndex = 0;
             // 
-            // btnReadCarList
+            // btnImportCarList
             // 
-            btnReadCarList.BackColor = SystemColors.ControlLight;
-            btnReadCarList.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnReadCarList.Location = new Point(392, 3);
-            btnReadCarList.Name = "btnReadCarList";
-            btnReadCarList.Size = new Size(108, 55);
-            btnReadCarList.TabIndex = 3;
-            btnReadCarList.Text = "Xem";
-            btnReadCarList.UseVisualStyleBackColor = false;
-            btnReadCarList.Click += btnReadCarList_Click_1;
+            btnImportCarList.BackColor = SystemColors.ControlLight;
+            btnImportCarList.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnImportCarList.Location = new Point(392, 3);
+            btnImportCarList.Name = "btnImportCarList";
+            btnImportCarList.Size = new Size(108, 55);
+            btnImportCarList.TabIndex = 3;
+            btnImportCarList.Text = "Nhập";
+            btnImportCarList.UseVisualStyleBackColor = false;
+            btnImportCarList.Click += btnImportCarList_Click_1;
             // 
             // btnDeleteCar
             // 
@@ -533,6 +822,7 @@
             btnEditCar.TabIndex = 1;
             btnEditCar.Text = "Sửa";
             btnEditCar.UseVisualStyleBackColor = false;
+            btnEditCar.Click += btnEditCar_Click;
             // 
             // btnAddCar
             // 
@@ -805,7 +1095,7 @@
             // 
             // panel20
             // 
-            panel20.Controls.Add(btnReadCustomer);
+            panel20.Controls.Add(btnExportCustomerList);
             panel20.Controls.Add(btnDeleteCustomer);
             panel20.Controls.Add(btnEditCustomer);
             panel20.Controls.Add(btnAddCustomer);
@@ -814,18 +1104,18 @@
             panel20.Size = new Size(503, 61);
             panel20.TabIndex = 0;
             // 
-            // btnReadCustomer
+            // btnExportCustomerList
             // 
-            btnReadCustomer.BackColor = SystemColors.ControlLight;
-            btnReadCustomer.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnReadCustomer.Location = new Point(392, 3);
-            btnReadCustomer.Name = "btnReadCustomer";
-            btnReadCustomer.Size = new Size(108, 55);
-            btnReadCustomer.TabIndex = 4;
-            btnReadCustomer.Text = "Xem";
-            btnReadCustomer.UseVisualStyleBackColor = false;
-            btnReadCustomer.UseWaitCursor = true;
-            btnReadCustomer.Click += btnReadCustomer_Click;
+            btnExportCustomerList.BackColor = SystemColors.ControlLight;
+            btnExportCustomerList.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnExportCustomerList.Location = new Point(392, 3);
+            btnExportCustomerList.Name = "btnExportCustomerList";
+            btnExportCustomerList.Size = new Size(108, 55);
+            btnExportCustomerList.TabIndex = 4;
+            btnExportCustomerList.Text = "Xuất";
+            btnExportCustomerList.UseVisualStyleBackColor = false;
+            btnExportCustomerList.UseWaitCursor = true;
+            btnExportCustomerList.Click += btnExportCustomer_Click;
             // 
             // btnDeleteCustomer
             // 
@@ -849,6 +1139,7 @@
             btnEditCustomer.TabIndex = 1;
             btnEditCustomer.Text = "Sửa";
             btnEditCustomer.UseVisualStyleBackColor = false;
+            btnEditCustomer.Click += btnEditCustomer_Click;
             // 
             // btnAddCustomer
             // 
@@ -922,9 +1213,9 @@
             label15.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label15.Location = new Point(3, 12);
             label15.Name = "label15";
-            label15.Size = new Size(120, 19);
+            label15.Size = new Size(118, 19);
             label15.TabIndex = 0;
-            label15.Text = "Số ngày thuê :";
+            label15.Text = "Ngày tạo đơn:";
             // 
             // btnThanhToan
             // 
@@ -937,25 +1228,26 @@
             btnThanhToan.TabIndex = 6;
             btnThanhToan.Text = "Thanh toán";
             btnThanhToan.UseVisualStyleBackColor = false;
+            btnThanhToan.Click += btnThanhToan_Click;
             // 
             // panel43
             // 
-            panel43.Controls.Add(txtTotalPrice);
+            panel43.Controls.Add(numCost);
             panel43.Controls.Add(label22);
             panel43.Location = new Point(3, 228);
             panel43.Name = "panel43";
             panel43.Size = new Size(335, 50);
             panel43.TabIndex = 3;
             // 
-            // txtTotalPrice
+            // numCost
             // 
-            txtTotalPrice.BackColor = SystemColors.Window;
-            txtTotalPrice.BorderStyle = BorderStyle.FixedSingle;
-            txtTotalPrice.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtTotalPrice.Location = new Point(121, 10);
-            txtTotalPrice.Name = "txtTotalPrice";
-            txtTotalPrice.Size = new Size(211, 26);
-            txtTotalPrice.TabIndex = 1;
+            numCost.BorderStyle = BorderStyle.FixedSingle;
+            numCost.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            numCost.Location = new Point(120, 10);
+            numCost.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
+            numCost.Name = "numCost";
+            numCost.Size = new Size(211, 26);
+            numCost.TabIndex = 2;
             // 
             // label22
             // 
@@ -1083,6 +1375,7 @@
             btnSearchBill.TabIndex = 3;
             btnSearchBill.Text = "Tìm kiếm";
             btnSearchBill.UseVisualStyleBackColor = false;
+            btnSearchBill.Click += btnSearchBill_Click;
             // 
             // panel29
             // 
@@ -1103,23 +1396,11 @@
             // 
             // panel30
             // 
-            panel30.Controls.Add(btnEditBill);
             panel30.Controls.Add(btnReadBill);
             panel30.Location = new Point(13, 13);
             panel30.Name = "panel30";
             panel30.Size = new Size(503, 61);
             panel30.TabIndex = 0;
-            // 
-            // btnEditBill
-            // 
-            btnEditBill.BackColor = SystemColors.ControlLight;
-            btnEditBill.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnEditBill.Location = new Point(136, 3);
-            btnEditBill.Name = "btnEditBill";
-            btnEditBill.Size = new Size(108, 55);
-            btnEditBill.TabIndex = 1;
-            btnEditBill.Text = "Sửa";
-            btnEditBill.UseVisualStyleBackColor = false;
             // 
             // btnReadBill
             // 
@@ -1131,6 +1412,7 @@
             btnReadBill.TabIndex = 0;
             btnReadBill.Text = "Xem";
             btnReadBill.UseVisualStyleBackColor = false;
+            btnReadBill.Click += btnReadBill_Click;
             // 
             // tpSchedule
             // 
@@ -1208,6 +1490,7 @@
             btnTraXe.TabIndex = 7;
             btnTraXe.Text = "Xác nhận trả xe";
             btnTraXe.UseVisualStyleBackColor = false;
+            btnTraXe.Click += btnTraXe_Click;
             // 
             // panel24
             // 
@@ -1240,20 +1523,22 @@
             // 
             // panel34
             // 
-            panel34.Controls.Add(dtDropOffDate);
+            panel34.Controls.Add(tbDropoffDate);
             panel34.Controls.Add(label16);
             panel34.Location = new Point(3, 169);
             panel34.Name = "panel34";
             panel34.Size = new Size(335, 50);
             panel34.TabIndex = 4;
             // 
-            // dtDropOffDate
+            // tbDropoffDate
             // 
-            dtDropOffDate.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dtDropOffDate.Location = new Point(120, 11);
-            dtDropOffDate.Name = "dtDropOffDate";
-            dtDropOffDate.Size = new Size(213, 22);
-            dtDropOffDate.TabIndex = 2;
+            tbDropoffDate.BackColor = SystemColors.Window;
+            tbDropoffDate.BorderStyle = BorderStyle.FixedSingle;
+            tbDropoffDate.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            tbDropoffDate.Location = new Point(121, 11);
+            tbDropoffDate.Name = "tbDropoffDate";
+            tbDropoffDate.Size = new Size(211, 26);
+            tbDropoffDate.TabIndex = 4;
             // 
             // label16
             // 
@@ -1267,20 +1552,22 @@
             // 
             // panel35
             // 
-            panel35.Controls.Add(dtPickUpDate);
+            panel35.Controls.Add(tbPickupDate);
             panel35.Controls.Add(label17);
             panel35.Location = new Point(3, 113);
             panel35.Name = "panel35";
             panel35.Size = new Size(335, 50);
             panel35.TabIndex = 3;
             // 
-            // dtPickUpDate
+            // tbPickupDate
             // 
-            dtPickUpDate.Font = new Font("Arial", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dtPickUpDate.Location = new Point(120, 12);
-            dtPickUpDate.Name = "dtPickUpDate";
-            dtPickUpDate.Size = new Size(213, 22);
-            dtPickUpDate.TabIndex = 1;
+            tbPickupDate.BackColor = SystemColors.Window;
+            tbPickupDate.BorderStyle = BorderStyle.FixedSingle;
+            tbPickupDate.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            tbPickupDate.Location = new Point(121, 11);
+            tbPickupDate.Name = "tbPickupDate";
+            tbPickupDate.Size = new Size(211, 26);
+            tbPickupDate.TabIndex = 3;
             // 
             // label17
             // 
@@ -1416,38 +1703,35 @@
             btnReadSchedule.UseVisualStyleBackColor = false;
             btnReadSchedule.Click += btnReadSchedule_Click;
             // 
-            // menuStrip1
-            // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { LogoutToolAdmin });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(921, 24);
-            menuStrip1.TabIndex = 1;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // LogoutToolAdmin
-            // 
-            LogoutToolAdmin.Name = "LogoutToolAdmin";
-            LogoutToolAdmin.Size = new Size(73, 20);
-            LogoutToolAdmin.Text = "Đăng xuất";
-            LogoutToolAdmin.Click += LogoutToolAdmin_Click;
-            // 
             // FormAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(921, 553);
             Controls.Add(tcAdmin);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
             Name = "FormAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormAdmin";
             FormClosed += FormAdmin_FormClosed;
             tcAdmin.ResumeLayout(false);
+            tpDashboard.ResumeLayout(false);
+            tpDashboard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chartRevenuePie).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            panel48.ResumeLayout(false);
+            panel48.PerformLayout();
+            panel47.ResumeLayout(false);
+            panel47.PerformLayout();
+            panel46.ResumeLayout(false);
+            panel46.PerformLayout();
+            panel45.ResumeLayout(false);
+            panel45.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)chartRevenue).EndInit();
             tpCar.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel5.ResumeLayout(false);
+            panel44.ResumeLayout(false);
+            panel44.PerformLayout();
             panel39.ResumeLayout(false);
             panel39.PerformLayout();
             panel10.ResumeLayout(false);
@@ -1493,6 +1777,7 @@
             panel31.PerformLayout();
             panel43.ResumeLayout(false);
             panel43.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numCost).EndInit();
             panel25.ResumeLayout(false);
             panel25.PerformLayout();
             panel26.ResumeLayout(false);
@@ -1524,10 +1809,7 @@
             panel41.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvSchedule).EndInit();
             panel42.ResumeLayout(false);
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -1609,19 +1891,15 @@
         private Panel panel29;
         private DataGridView dtgvBillInfo;
         private Panel panel30;
-        private Button btnEditBill;
         private Button btnReadBill;
         private TextBox txtCustomerId;
         private Panel panel43;
-        private TextBox txtTotalPrice;
         private Label label22;
         private Panel panel32;
         private Panel panel33;
         private Panel panel34;
-        private DateTimePicker dtPickUpDate;
         private Label label16;
         private Panel panel35;
-        private DateTimePicker dtDropOffDate;
         private Label label17;
         private Panel panel37;
         private TextBox txtCarOfSchedule;
@@ -1649,15 +1927,38 @@
         private Panel panel36;
         private TextBox txtStateOfCar;
         private Label label18;
-        private Button btnReadCarList;
-        private Button btnReadCustomer;
+        private Button btnImportCarList;
+        private Button btnExportCustomerList;
         private Panel panel23;
         private TextBox txtGender;
         private Label label10;
         private Panel panel39;
-        private TextBox txtDescription;
+        private TextBox txtCategoryCar;
         private Label label21;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem LogoutToolAdmin;
+        private Panel panel44;
+        private TextBox txtBrandCar;
+        private Label label23;
+        private NumericUpDown numCost;
+        private TextBox tbDropoffDate;
+        private TextBox tbPickupDate;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartRevenue;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel45;
+        private Label lbRevenue;
+        private Label label25;
+        private Panel panel48;
+        private Label lbBills;
+        private Label label31;
+        private Panel panel47;
+        private Label lbCustomers;
+        private Label label27;
+        private Panel panel46;
+        private Label lbCars;
+        private Label label26;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartRevenuePie;
+        private ComboBox cbMonth;
+        private Label label24;
+        private Label label28;
+        private ComboBox comboBox1;
     }
 }

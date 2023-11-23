@@ -19,13 +19,13 @@ namespace MidTerm
             bdsrc.DataSource = dCustomer.getCustomer();
         }
 
-        public void addCustomer(string name, string cccd, string phoneNum, string gender, string address)
+        public void addCustomer(CustomerDTO cusdto)
         {
             try
             {
-                if (!dCustomer.checkIsExists(cccd))
+                if (!dCustomer.checkIsExists(cusdto.CustomerCCCD))
                 {
-                    dCustomer.addCustomer(name, cccd, phoneNum, gender, address);
+                    dCustomer.addCustomer(cusdto);
                     MessageBox.Show("Thêm mới khách hàng thành công");
                 }
                 else
@@ -39,11 +39,22 @@ namespace MidTerm
             }
         }
 
-        public List<Customer> searchCustomerByName(string name)
+        public List<Customer> searchCustomer(string key)
         {
-            return dCustomer.searchCustomerByName(name);
+            return dCustomer.searchCustomer(key);
         }
-
+        
+        public void updateCustomer(int id, CustomerDTO cusdto)
+        {
+            try
+            {
+                dCustomer.UpdateCustomer(id, cusdto);
+            }
+            catch
+            {
+                MessageBox.Show("Sửa thất bại");
+            }
+        }
         public void deleteCustomer(int id)
         {
             try
@@ -57,5 +68,9 @@ namespace MidTerm
             }
         }
        
+        public int GetCustomersTotal()
+        {
+            return dCustomer.CustomersTotal();
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace MidTerm
 
         public dynamic GetFeatureList()
         {
-            var features = _context.Features!.Select(e => new { e.FeatureName });
+            var features = _context.Features!.ToList();
             return features;
         }
     }

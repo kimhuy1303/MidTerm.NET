@@ -38,7 +38,6 @@ namespace MidTerm
                         FormChuongTrinh f = new FormChuongTrinh();
                         f.Show();
                         f.managementTool.Enabled = false;
-
                         this.Hide();
                         f.Logout += F_Logout;
                     }

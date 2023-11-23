@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace MidTerm
 {
-    public class BrandCar
+    public class RevenueDTO
     {
-        public int CarId { get; set; }
-        public int BrandId { get; set; }
+        public int Day {  get; set; }
+        public double Revenue;
+        public RevenueDTO() 
+        {
+        }
     }
 }

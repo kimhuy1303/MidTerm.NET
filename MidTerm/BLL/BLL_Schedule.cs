@@ -8,15 +8,26 @@ namespace MidTerm
 {
     public class BLL_Schedule
     {
-        DAO_Schedule dao_Schedule;
+        DAO_Schedule dSchedule;
         public BLL_Schedule()
         {
-            dao_Schedule = new DAO_Schedule();
+            dSchedule = new DAO_Schedule();
         }
 
         public void displayDTGVSchedule(BindingSource bdsrc)
         {
-            bdsrc.DataSource = dao_Schedule.getSchedule();
+            bdsrc.DataSource = dSchedule.getScheduleList();
+        }
+
+        public void addSchedule(ScheduleDTO scheduledto)
+        {
+            dSchedule.addSchedule(scheduledto);
+        }
+
+        public int getScheduleId()
+        {
+            var res = dSchedule.getSchedule();
+            return res.Id;
         }
     }
 }

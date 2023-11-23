@@ -27,25 +27,40 @@ namespace MidTerm
             return checkCCCD != null ? true : false;
         }
 
-        public void addCustomer(string name, string cccd, string phoneNum, string gender,string address) 
+        public void addCustomer(CustomerDTO customerdto) 
         {
                 var customer = new Customer
                 {
-                    CustomerName = name,
-                    CCCD = cccd,
-                    PhoneNumber = phoneNum,
-                    Gender = gender,
-                    Address = address
+                    CustomerName = customerdto.CustomerName,
+                    CCCD = customerdto.CustomerCCCD,
+                    PhoneNumber = customerdto.CustomerPhoneNum,
+                    Gender = customerdto.CustomerGender,
+                    Address = customerdto.CustomerAddress
                 };
                 _context.Add(customer);
                 _context.SaveChanges();
             
         }
 
-        public List<Customer> searchCustomerByName(string name)
+        public List<Customer> searchCustomer(string key)
         {
-            var res = _context.Customers.Where(c => c.CustomerName.Contains(name)).ToList();
+            var res = _context.Customers.Where(c => c.CustomerName.Contains(key) || c.CCCD.Contains(key) || c.PhoneNumber.Contains(key)).ToList();
             return res;
+        }
+
+        public void UpdateCustomer(int id, CustomerDTO customerdto)
+        {
+            var customer = _context.Customers.FirstOrDefault(e => e.Id == id);
+            if(customer != null)
+            {
+                customer.CustomerName = customerdto.CustomerName;
+                customer.Gender = customerdto.CustomerGender;
+                customer.Address = customerdto.CustomerAddress;
+                customer.PhoneNumber = customerdto.CustomerPhoneNum;
+                customer.CCCD = customerdto.CustomerCCCD;
+                _context.SaveChanges();
+                MessageBox.Show("Sửa thành công");
+            }
         }
 
         public void deleteCustomer(int id)
@@ -53,6 +68,12 @@ namespace MidTerm
             var res = _context.Customers.Find(id);
             _context.Remove(res);
             _context.SaveChanges();
+        }
+
+        public int CustomersTotal()
+        {
+            var amount = _context.Customers.Count();
+            return amount;
         }
     }
 }

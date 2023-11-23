@@ -19,5 +19,11 @@ namespace MidTerm
             var locations = _context.Locations?.OrderBy(e => e.Id).ToList();
             return locations!;
         }
+
+        public Location getLocationName(int id)
+        {
+            var res = _context.Locations?.FirstOrDefault(e => e.Id == id);
+            return res;
+        }
     }
 }

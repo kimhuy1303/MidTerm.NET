@@ -12,7 +12,9 @@ namespace MidTerm
     public class CarDTO
     {
         public string? CarName { get; set; }
-        public string? Description { get; set; }
+        public string? Category { get; set; }
+
+        public string Brand { get; set; }
         public double Price { get; set; }
         public string? Status { get; set; }
        // public ICollection<Feature> Features { get; } = new List<Feature>();

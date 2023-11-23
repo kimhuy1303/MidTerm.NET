@@ -15,17 +15,17 @@ namespace MidTerm
         [MaxLength(100)]
         public string? CarName { get; set; }
         [MaxLength(100)]
-        public string? Description { get; set; }
+        public string? Category { get; set; }
+
+        [MaxLength(100)]
+        public string? Brand { get; set; }
 
         public double Price { get; set; }
 
         //[DefaultValue("Trống")]
         public string? Status { get; set; } = "Trống";
-
-        public ICollection<Feature> Features { get; } = new List<Feature>();
         public int FuelId { get; set; }
         public Fuel? Fuel { get; set; }
         public ICollection<BillInfo> BillInfos { get; } = new List<BillInfo>();
-        public ICollection<Brand> Brands { get; } = new List<Brand>();
     }
 }
