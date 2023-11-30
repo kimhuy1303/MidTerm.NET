@@ -43,6 +43,7 @@ namespace MidTerm
         private void BillInfoForm_Load(object sender, EventArgs e)
         {
             var destination = getDestination(destinationId);
+            double totalPriceFeatures = 0;
             lblFeatures.Text = "";
             if (features.Count == 0)
             {
@@ -51,12 +52,13 @@ namespace MidTerm
             }
             else
             {
-                var totalPriceFeatures = getPriceFeatures(features);
+                totalPriceFeatures = getPriceFeatures(features);
                 foreach (Feature feature in features)
                 {
                     lblFeatures.Text += "- " + feature.FeatureName + " - " + feature.FeaturePrice + "đ\n";
                 }
             }
+            double total = totalCost + totalPriceFeatures;
             tbCustomerName.Text = this.customer.CustomerName;
             tbPhoneNum.Text = this.customer.PhoneNumber;
             tbCCCD.Text = this.customer.CCCD;
@@ -66,8 +68,8 @@ namespace MidTerm
             dtpPickUpDate.Value = this.pickUpDate;
             dtpDropOffDate.Value = this.dropOffDate;
             tbDeposit.Text = Math.Ceiling(deposit).ToString() + "đ";
-            tbTotalCost.Text = Math.Ceiling(totalCost).ToString() + "đ";
-            tbCost.Text = Math.Ceiling(totalCost - deposit).ToString() + "đ";
+            tbTotalCost.Text = Math.Ceiling(total).ToString() + "đ";
+            tbCost.Text = Math.Ceiling(total - deposit).ToString() + "đ";
             tbDestination.Text = destination.ToString();
         }
 
@@ -149,7 +151,8 @@ namespace MidTerm
 
         private void FormBillInfo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            (sender as FormChuongTrinh).reset(sender, e);
+            FormChuongTrinh f = new FormChuongTrinh(Const.Authorize);
+            f.reset(sender, e);
         }
     }
 }

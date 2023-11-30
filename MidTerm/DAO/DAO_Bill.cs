@@ -34,7 +34,7 @@ namespace MidTerm
 
         public void saveStatusById(int id)
         {
-            var bill = _context.Bills.FirstOrDefault(e => e.Id == id);
+            var bill = _context.Bills.Find(id);
             bill.Status = 1;
             _context.SaveChanges();
         }

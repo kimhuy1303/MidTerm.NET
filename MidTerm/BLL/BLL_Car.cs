@@ -29,7 +29,7 @@ namespace MidTerm
                 button.Height = height;
                 button.TextAlign = ContentAlignment.MiddleCenter;
                 button.Text = car.CarName + Environment.NewLine + "(" + car.Category + ", " + car.Brand + ")" + Environment.NewLine + car.Status;
-                button.Font = new FormChuongTrinh().font;
+                button.Font = new FormChuongTrinh(Const.Authorize).font;
                 button.Tag = car.Id;
                 button.Name = car.Id.ToString();
                 switch (car.Status)

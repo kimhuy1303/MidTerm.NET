@@ -86,7 +86,6 @@
             panel3 = new Panel();
             dtgvCar = new DataGridView();
             panel2 = new Panel();
-            btnImportCarList = new Button();
             btnDeleteCar = new Button();
             btnEditCar = new Button();
             btnAddCar = new Button();
@@ -117,13 +116,16 @@
             panel19 = new Panel();
             dtgvCustomer = new DataGridView();
             panel20 = new Panel();
-            btnExportCustomerList = new Button();
             btnDeleteCustomer = new Button();
             btnEditCustomer = new Button();
             btnAddCustomer = new Button();
             tpBill = new TabPage();
             panel21 = new Panel();
             panel22 = new Panel();
+            panel50 = new Panel();
+            txtStatusOfBill = new Label();
+            txtStatusNum = new Label();
+            label30 = new Label();
             panel31 = new Panel();
             txtRentDate = new TextBox();
             label15 = new Label();
@@ -150,6 +152,9 @@
             tpSchedule = new TabPage();
             panel32 = new Panel();
             panel33 = new Panel();
+            panel49 = new Panel();
+            txtIdCarOfSchedule = new TextBox();
+            label29 = new Label();
             panel36 = new Panel();
             txtStateOfCar = new TextBox();
             label18 = new Label();
@@ -169,13 +174,13 @@
             panel38 = new Panel();
             txtCustomerOfSchedule = new TextBox();
             label20 = new Label();
-            panel40 = new Panel();
-            txtSearchSchedule = new TextBox();
-            btnSearchSchedule = new Button();
             panel41 = new Panel();
             dtgvSchedule = new DataGridView();
             panel42 = new Panel();
             btnReadSchedule = new Button();
+            panel40 = new Panel();
+            txtSearchSchedule = new TextBox();
+            btnSearchSchedule = new Button();
             tcAdmin.SuspendLayout();
             tpDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartRevenuePie).BeginInit();
@@ -216,6 +221,7 @@
             tpBill.SuspendLayout();
             panel21.SuspendLayout();
             panel22.SuspendLayout();
+            panel50.SuspendLayout();
             panel31.SuspendLayout();
             panel43.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numCost).BeginInit();
@@ -229,16 +235,17 @@
             tpSchedule.SuspendLayout();
             panel32.SuspendLayout();
             panel33.SuspendLayout();
+            panel49.SuspendLayout();
             panel36.SuspendLayout();
             panel24.SuspendLayout();
             panel34.SuspendLayout();
             panel35.SuspendLayout();
             panel37.SuspendLayout();
             panel38.SuspendLayout();
-            panel40.SuspendLayout();
             panel41.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvSchedule).BeginInit();
             panel42.SuspendLayout();
+            panel40.SuspendLayout();
             SuspendLayout();
             // 
             // tcAdmin
@@ -251,7 +258,7 @@
             tcAdmin.Location = new Point(12, 27);
             tcAdmin.Name = "tcAdmin";
             tcAdmin.SelectedIndex = 0;
-            tcAdmin.Size = new Size(897, 524);
+            tcAdmin.Size = new Size(897, 559);
             tcAdmin.TabIndex = 0;
             tcAdmin.Selected += tcAdmin_Selected;
             // 
@@ -267,7 +274,7 @@
             tpDashboard.Location = new Point(4, 24);
             tpDashboard.Name = "tpDashboard";
             tpDashboard.Padding = new Padding(3);
-            tpDashboard.Size = new Size(889, 496);
+            tpDashboard.Size = new Size(889, 531);
             tpDashboard.TabIndex = 0;
             tpDashboard.Text = "Thống kê";
             tpDashboard.UseVisualStyleBackColor = true;
@@ -492,7 +499,7 @@
             tpCar.Location = new Point(4, 24);
             tpCar.Name = "tpCar";
             tpCar.Padding = new Padding(3);
-            tpCar.Size = new Size(889, 496);
+            tpCar.Size = new Size(889, 531);
             tpCar.TabIndex = 1;
             tpCar.Text = "Xe oto";
             tpCar.UseVisualStyleBackColor = true;
@@ -779,7 +786,6 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(btnImportCarList);
             panel2.Controls.Add(btnDeleteCar);
             panel2.Controls.Add(btnEditCar);
             panel2.Controls.Add(btnAddCar);
@@ -787,18 +793,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(503, 61);
             panel2.TabIndex = 0;
-            // 
-            // btnImportCarList
-            // 
-            btnImportCarList.BackColor = SystemColors.ControlLight;
-            btnImportCarList.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnImportCarList.Location = new Point(392, 3);
-            btnImportCarList.Name = "btnImportCarList";
-            btnImportCarList.Size = new Size(108, 55);
-            btnImportCarList.TabIndex = 3;
-            btnImportCarList.Text = "Nhập";
-            btnImportCarList.UseVisualStyleBackColor = false;
-            btnImportCarList.Click += btnImportCarList_Click_1;
             // 
             // btnDeleteCar
             // 
@@ -842,7 +836,7 @@
             tpCustomer.Location = new Point(4, 24);
             tpCustomer.Name = "tpCustomer";
             tpCustomer.Padding = new Padding(3);
-            tpCustomer.Size = new Size(889, 496);
+            tpCustomer.Size = new Size(889, 531);
             tpCustomer.TabIndex = 2;
             tpCustomer.Text = "Khách hàng";
             tpCustomer.UseVisualStyleBackColor = true;
@@ -1095,7 +1089,6 @@
             // 
             // panel20
             // 
-            panel20.Controls.Add(btnExportCustomerList);
             panel20.Controls.Add(btnDeleteCustomer);
             panel20.Controls.Add(btnEditCustomer);
             panel20.Controls.Add(btnAddCustomer);
@@ -1103,19 +1096,6 @@
             panel20.Name = "panel20";
             panel20.Size = new Size(503, 61);
             panel20.TabIndex = 0;
-            // 
-            // btnExportCustomerList
-            // 
-            btnExportCustomerList.BackColor = SystemColors.ControlLight;
-            btnExportCustomerList.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnExportCustomerList.Location = new Point(392, 3);
-            btnExportCustomerList.Name = "btnExportCustomerList";
-            btnExportCustomerList.Size = new Size(108, 55);
-            btnExportCustomerList.TabIndex = 4;
-            btnExportCustomerList.Text = "Xuất";
-            btnExportCustomerList.UseVisualStyleBackColor = false;
-            btnExportCustomerList.UseWaitCursor = true;
-            btnExportCustomerList.Click += btnExportCustomer_Click;
             // 
             // btnDeleteCustomer
             // 
@@ -1159,7 +1139,7 @@
             tpBill.Location = new Point(4, 24);
             tpBill.Name = "tpBill";
             tpBill.Padding = new Padding(3);
-            tpBill.Size = new Size(889, 496);
+            tpBill.Size = new Size(889, 531);
             tpBill.TabIndex = 3;
             tpBill.Text = "Đơn đặt xe";
             tpBill.UseVisualStyleBackColor = true;
@@ -1177,6 +1157,7 @@
             // 
             // panel22
             // 
+            panel22.Controls.Add(panel50);
             panel22.Controls.Add(panel31);
             panel22.Controls.Add(btnThanhToan);
             panel22.Controls.Add(panel43);
@@ -1187,6 +1168,45 @@
             panel22.Name = "panel22";
             panel22.Size = new Size(341, 388);
             panel22.TabIndex = 3;
+            // 
+            // panel50
+            // 
+            panel50.Controls.Add(txtStatusOfBill);
+            panel50.Controls.Add(txtStatusNum);
+            panel50.Controls.Add(label30);
+            panel50.Location = new Point(3, 284);
+            panel50.Name = "panel50";
+            panel50.Size = new Size(335, 50);
+            panel50.TabIndex = 4;
+            // 
+            // txtStatusOfBill
+            // 
+            txtStatusOfBill.AutoSize = true;
+            txtStatusOfBill.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtStatusOfBill.Location = new Point(120, 12);
+            txtStatusOfBill.Name = "txtStatusOfBill";
+            txtStatusOfBill.Size = new Size(0, 19);
+            txtStatusOfBill.TabIndex = 2;
+            // 
+            // txtStatusNum
+            // 
+            txtStatusNum.AutoSize = true;
+            txtStatusNum.Enabled = false;
+            txtStatusNum.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtStatusNum.Location = new Point(119, 12);
+            txtStatusNum.Name = "txtStatusNum";
+            txtStatusNum.Size = new Size(0, 19);
+            txtStatusNum.TabIndex = 1;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label30.Location = new Point(1, 12);
+            label30.Name = "label30";
+            label30.Size = new Size(91, 19);
+            label30.TabIndex = 0;
+            label30.Text = "Trạng thái:";
             // 
             // panel31
             // 
@@ -1393,6 +1413,7 @@
             dtgvBillInfo.RowTemplate.Height = 25;
             dtgvBillInfo.Size = new Size(497, 385);
             dtgvBillInfo.TabIndex = 0;
+            dtgvBillInfo.CellClick += dtgvBillInfo_CellClick;
             // 
             // panel30
             // 
@@ -1420,7 +1441,7 @@
             tpSchedule.Location = new Point(4, 24);
             tpSchedule.Name = "tpSchedule";
             tpSchedule.Padding = new Padding(3);
-            tpSchedule.Size = new Size(889, 496);
+            tpSchedule.Size = new Size(889, 531);
             tpSchedule.TabIndex = 4;
             tpSchedule.Text = "Lịch trình";
             tpSchedule.UseVisualStyleBackColor = true;
@@ -1433,11 +1454,12 @@
             panel32.Controls.Add(panel42);
             panel32.Location = new Point(6, 11);
             panel32.Name = "panel32";
-            panel32.Size = new Size(877, 474);
+            panel32.Size = new Size(877, 514);
             panel32.TabIndex = 3;
             // 
             // panel33
             // 
+            panel33.Controls.Add(panel49);
             panel33.Controls.Add(panel36);
             panel33.Controls.Add(btnTraXe);
             panel33.Controls.Add(panel24);
@@ -1447,14 +1469,44 @@
             panel33.Controls.Add(panel38);
             panel33.Location = new Point(522, 80);
             panel33.Name = "panel33";
-            panel33.Size = new Size(341, 388);
+            panel33.Size = new Size(341, 431);
             panel33.TabIndex = 3;
+            // 
+            // panel49
+            // 
+            panel49.Controls.Add(txtIdCarOfSchedule);
+            panel49.Controls.Add(label29);
+            panel49.Location = new Point(1, 56);
+            panel49.Name = "panel49";
+            panel49.Size = new Size(335, 45);
+            panel49.TabIndex = 3;
+            // 
+            // txtIdCarOfSchedule
+            // 
+            txtIdCarOfSchedule.BackColor = SystemColors.ScrollBar;
+            txtIdCarOfSchedule.BorderStyle = BorderStyle.FixedSingle;
+            txtIdCarOfSchedule.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtIdCarOfSchedule.Location = new Point(121, 10);
+            txtIdCarOfSchedule.Name = "txtIdCarOfSchedule";
+            txtIdCarOfSchedule.ReadOnly = true;
+            txtIdCarOfSchedule.Size = new Size(86, 26);
+            txtIdCarOfSchedule.TabIndex = 2;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label29.Location = new Point(9, 12);
+            label29.Name = "label29";
+            label29.Size = new Size(53, 19);
+            label29.TabIndex = 0;
+            label29.Text = "ID xe:";
             // 
             // panel36
             // 
             panel36.Controls.Add(txtStateOfCar);
             panel36.Controls.Add(label18);
-            panel36.Location = new Point(3, 281);
+            panel36.Location = new Point(0, 320);
             panel36.Name = "panel36";
             panel36.Size = new Size(335, 50);
             panel36.TabIndex = 4;
@@ -1484,7 +1536,7 @@
             btnTraXe.BackColor = Color.WhiteSmoke;
             btnTraXe.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnTraXe.ForeColor = Color.Blue;
-            btnTraXe.Location = new Point(187, 335);
+            btnTraXe.Location = new Point(187, 378);
             btnTraXe.Name = "btnTraXe";
             btnTraXe.Size = new Size(148, 49);
             btnTraXe.TabIndex = 7;
@@ -1496,7 +1548,7 @@
             // 
             panel24.Controls.Add(txtDestination);
             panel24.Controls.Add(label11);
-            panel24.Location = new Point(3, 225);
+            panel24.Location = new Point(0, 264);
             panel24.Name = "panel24";
             panel24.Size = new Size(335, 50);
             panel24.TabIndex = 3;
@@ -1525,7 +1577,7 @@
             // 
             panel34.Controls.Add(tbDropoffDate);
             panel34.Controls.Add(label16);
-            panel34.Location = new Point(3, 169);
+            panel34.Location = new Point(0, 208);
             panel34.Name = "panel34";
             panel34.Size = new Size(335, 50);
             panel34.TabIndex = 4;
@@ -1554,7 +1606,7 @@
             // 
             panel35.Controls.Add(tbPickupDate);
             panel35.Controls.Add(label17);
-            panel35.Location = new Point(3, 113);
+            panel35.Location = new Point(0, 152);
             panel35.Name = "panel35";
             panel35.Size = new Size(335, 50);
             panel35.TabIndex = 3;
@@ -1583,7 +1635,7 @@
             // 
             panel37.Controls.Add(txtCarOfSchedule);
             panel37.Controls.Add(label19);
-            panel37.Location = new Point(3, 61);
+            panel37.Location = new Point(0, 102);
             panel37.Name = "panel37";
             panel37.Size = new Size(335, 50);
             panel37.TabIndex = 2;
@@ -1637,6 +1689,45 @@
             label20.TabIndex = 0;
             label20.Text = "Khách hàng : ";
             // 
+            // panel41
+            // 
+            panel41.Controls.Add(dtgvSchedule);
+            panel41.Location = new Point(13, 80);
+            panel41.Name = "panel41";
+            panel41.Size = new Size(503, 391);
+            panel41.TabIndex = 1;
+            // 
+            // dtgvSchedule
+            // 
+            dtgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvSchedule.Location = new Point(3, 3);
+            dtgvSchedule.Name = "dtgvSchedule";
+            dtgvSchedule.RowTemplate.Height = 25;
+            dtgvSchedule.Size = new Size(503, 388);
+            dtgvSchedule.TabIndex = 0;
+            dtgvSchedule.CellClick += dtgvSchedule_CellClick;
+            dtgvSchedule.CellContentClick += dtgvSchedule_CellContentClick;
+            // 
+            // panel42
+            // 
+            panel42.Controls.Add(btnReadSchedule);
+            panel42.Location = new Point(13, 13);
+            panel42.Name = "panel42";
+            panel42.Size = new Size(503, 61);
+            panel42.TabIndex = 0;
+            // 
+            // btnReadSchedule
+            // 
+            btnReadSchedule.BackColor = SystemColors.ControlLight;
+            btnReadSchedule.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnReadSchedule.Location = new Point(5, 3);
+            btnReadSchedule.Name = "btnReadSchedule";
+            btnReadSchedule.Size = new Size(108, 55);
+            btnReadSchedule.TabIndex = 0;
+            btnReadSchedule.Text = "Xem";
+            btnReadSchedule.UseVisualStyleBackColor = false;
+            btnReadSchedule.Click += btnReadSchedule_Click;
+            // 
             // panel40
             // 
             panel40.Controls.Add(txtSearchSchedule);
@@ -1665,49 +1756,13 @@
             btnSearchSchedule.TabIndex = 3;
             btnSearchSchedule.Text = "Tìm kiếm";
             btnSearchSchedule.UseVisualStyleBackColor = false;
-            // 
-            // panel41
-            // 
-            panel41.Controls.Add(dtgvSchedule);
-            panel41.Location = new Point(13, 80);
-            panel41.Name = "panel41";
-            panel41.Size = new Size(503, 391);
-            panel41.TabIndex = 1;
-            // 
-            // dtgvSchedule
-            // 
-            dtgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvSchedule.Location = new Point(3, 3);
-            dtgvSchedule.Name = "dtgvSchedule";
-            dtgvSchedule.RowTemplate.Height = 25;
-            dtgvSchedule.Size = new Size(497, 385);
-            dtgvSchedule.TabIndex = 0;
-            // 
-            // panel42
-            // 
-            panel42.Controls.Add(btnReadSchedule);
-            panel42.Location = new Point(13, 13);
-            panel42.Name = "panel42";
-            panel42.Size = new Size(503, 61);
-            panel42.TabIndex = 0;
-            // 
-            // btnReadSchedule
-            // 
-            btnReadSchedule.BackColor = SystemColors.ControlLight;
-            btnReadSchedule.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnReadSchedule.Location = new Point(5, 3);
-            btnReadSchedule.Name = "btnReadSchedule";
-            btnReadSchedule.Size = new Size(108, 55);
-            btnReadSchedule.TabIndex = 0;
-            btnReadSchedule.Text = "Xem";
-            btnReadSchedule.UseVisualStyleBackColor = false;
-            btnReadSchedule.Click += btnReadSchedule_Click;
+            btnSearchSchedule.Click += btnSearchSchedule_Click;
             // 
             // FormAdmin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(921, 553);
+            ClientSize = new Size(921, 591);
             Controls.Add(tcAdmin);
             Name = "FormAdmin";
             StartPosition = FormStartPosition.CenterScreen;
@@ -1773,6 +1828,8 @@
             tpBill.ResumeLayout(false);
             panel21.ResumeLayout(false);
             panel22.ResumeLayout(false);
+            panel50.ResumeLayout(false);
+            panel50.PerformLayout();
             panel31.ResumeLayout(false);
             panel31.PerformLayout();
             panel43.ResumeLayout(false);
@@ -1792,6 +1849,8 @@
             tpSchedule.ResumeLayout(false);
             panel32.ResumeLayout(false);
             panel33.ResumeLayout(false);
+            panel49.ResumeLayout(false);
+            panel49.PerformLayout();
             panel36.ResumeLayout(false);
             panel36.PerformLayout();
             panel24.ResumeLayout(false);
@@ -1804,11 +1863,11 @@
             panel37.PerformLayout();
             panel38.ResumeLayout(false);
             panel38.PerformLayout();
-            panel40.ResumeLayout(false);
-            panel40.PerformLayout();
             panel41.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvSchedule).EndInit();
             panel42.ResumeLayout(false);
+            panel40.ResumeLayout(false);
+            panel40.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1907,9 +1966,6 @@
         private Panel panel38;
         private TextBox txtCustomerOfSchedule;
         private Label label20;
-        private Panel panel40;
-        private TextBox txtSearchSchedule;
-        private Button btnSearchSchedule;
         private Panel panel41;
         private DataGridView dtgvSchedule;
         private Panel panel42;
@@ -1927,8 +1983,6 @@
         private Panel panel36;
         private TextBox txtStateOfCar;
         private Label label18;
-        private Button btnImportCarList;
-        private Button btnExportCustomerList;
         private Panel panel23;
         private TextBox txtGender;
         private Label label10;
@@ -1960,5 +2014,15 @@
         private Label label24;
         private Label label28;
         private ComboBox comboBox1;
+        private Panel panel49;
+        private TextBox txtIdCarOfSchedule;
+        private Label label29;
+        private Panel panel50;
+        private Label label30;
+        private Label txtStatusOfBill;
+        private Label txtStatusNum;
+        private Panel panel40;
+        private TextBox txtSearchSchedule;
+        private Button btnSearchSchedule;
     }
 }

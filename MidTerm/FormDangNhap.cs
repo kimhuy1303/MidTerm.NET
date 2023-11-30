@@ -33,22 +33,11 @@ namespace MidTerm
             {
                 if (checkLogin(txtUsername.Text, txtPassword.Text))
                 {
-                    if (Const.Authorize == "Staff")
-                    {
-                        FormChuongTrinh f = new FormChuongTrinh();
-                        f.Show();
-                        f.managementTool.Enabled = false;
-                        this.Hide();
-                        f.Logout += F_Logout;
-                    }
-                    else
-                    {
-                        FormChuongTrinh f = new FormChuongTrinh();
-                        f.Show();
-                        f.managementTool.Enabled = true;
-                        this.Hide();
-                        f.Logout += F_Logout;
-                    }
+                    FormChuongTrinh f = new FormChuongTrinh(Const.Authorize);
+                    f.Show();
+                    this.Hide();
+                    f.Logout += F_Logout;
+                  
                 }
                 else
                 {

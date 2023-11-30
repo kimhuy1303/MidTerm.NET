@@ -21,12 +21,6 @@ namespace MidTerm
             var cars = _context.Cars!.Select(e => new {e.Id, e.CarName, e.Category, e.Brand, e.Price, e.Fuel.FuelName, e.Status}).ToList();
             return cars;
         }
-        
-        public int getCarId(string name)
-        {
-            var car = _context.Cars!.FirstOrDefault(e => e.CarName == name);
-            return car.Id;
-        }
 
         public Car getCarById(int id)
         {

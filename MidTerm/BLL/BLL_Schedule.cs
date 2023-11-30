@@ -29,5 +29,10 @@ namespace MidTerm
             var res = dSchedule.getSchedule();
             return res.Id;
         }
+
+        public dynamic searchSchedule(string key)
+        {
+            return dSchedule.seachSchedule(key);
+        }
     }
 }

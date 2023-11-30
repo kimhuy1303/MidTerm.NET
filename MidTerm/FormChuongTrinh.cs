@@ -13,17 +13,28 @@ namespace MidTerm
         BLL_Customer bllCustomer;
         public bool isClose = true;
         public Font font = new Font("Arial", 9, FontStyle.Regular);
-        public FormChuongTrinh()
+        public string authorize;
+        public FormChuongTrinh(string author)
         {
             InitializeComponent();
+            this.authorize = author;
             bllCar = new BLL_Car();
             bllFeature = new BLL_Feature();
             bllLocation = new BLL_Location();
             bllCustomer = new BLL_Customer();
+            
         }
 
         private void FormChuongTrinh_Load(object sender, EventArgs e)
         {
+            if (authorize == "Admin")
+            {
+                managementTool.Enabled = true;
+            }
+            else
+            {
+                managementTool.Enabled = false;
+            }
             bllCar.DisplayCarList(new Button(), pnCar);
             bllFeature.displayFeatureList(new CheckBox(), pnFeature);
             bllLocation.DisplayLocation(cbLocation);

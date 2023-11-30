@@ -25,7 +25,7 @@ namespace MidTerm
                 checkBox.Text = feature.FeatureName;
                 checkBox.Tag = feature;
                 checkBox.AutoSize = true;
-                checkBox.Font = new FormChuongTrinh().font;
+                checkBox.Font = new FormChuongTrinh(Const.Authorize).font;
                 checkBox.CheckedChanged += CheckBox_CheckedChanged;
                 pn.Controls.Add(checkBox);
                 

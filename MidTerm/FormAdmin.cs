@@ -57,6 +57,7 @@ namespace MidTerm
             loadCustomerList();
             loadSchedule();
             loadBillInfo();
+
         }
 
         public event EventHandler CloseForm;
@@ -67,7 +68,7 @@ namespace MidTerm
             {
                 System.Windows.Forms.Application.Exit();
             }
-            FormChuongTrinh f = new FormChuongTrinh();
+            FormChuongTrinh f = new FormChuongTrinh(Const.Authorize);
             f.reset(sender, e);
         }
 
@@ -131,6 +132,7 @@ namespace MidTerm
         {
             dtgvSchedule.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             bllSchedule.displayDTGVSchedule(scheduleList);
+
         }
 
         void loadBillInfo()
@@ -172,6 +174,8 @@ namespace MidTerm
             tbDropoffDate.DataBindings.Add(new Binding("Text", dtgvSchedule.DataSource, "DropOffDate", true, DataSourceUpdateMode.Never));
             txtDestination.DataBindings.Add(new Binding("Text", dtgvSchedule.DataSource, "LocationName", true, DataSourceUpdateMode.Never));
             txtStateOfCar.DataBindings.Add(new Binding("Text", dtgvSchedule.DataSource, "Status", true, DataSourceUpdateMode.Never));
+            txtIdCarOfSchedule.DataBindings.Add(new Binding("Text", dtgvSchedule.DataSource, "Id", true, DataSourceUpdateMode.Never));
+
         }
 
         void AddCustomerBinding()
@@ -186,11 +190,12 @@ namespace MidTerm
 
         void AddBillBinding()
         {
-            txtIdBill.DataBindings.Add(new Binding("Text", dtgvBillInfo.DataSource, "Id", true, DataSourceUpdateMode.Never));
+            txtIdBill.DataBindings.Add(new Binding("Text", dtgvBillInfo.DataSource, "BillId", true, DataSourceUpdateMode.Never));
             txtCustomerOfBill.DataBindings.Add(new Binding("Text", dtgvBillInfo.DataSource, "CustomerName", true, DataSourceUpdateMode.Never));
             txtCarOfBill.DataBindings.Add(new Binding("Text", dtgvBillInfo.DataSource, "CarName", true, DataSourceUpdateMode.Never));
             txtRentDate.DataBindings.Add(new Binding("Text", dtgvBillInfo.DataSource, "CreatedDate", true, DataSourceUpdateMode.Never));
             numCost.DataBindings.Add(new Binding("Value", dtgvBillInfo.DataSource, "Cost", true, DataSourceUpdateMode.Never));
+            txtStatusNum.DataBindings.Add(new Binding("Text", dtgvBillInfo.DataSource, "Status", true, DataSourceUpdateMode.Never));
         }
         #endregion
 
@@ -198,17 +203,21 @@ namespace MidTerm
         private void btnReadSchedule_Click(object sender, EventArgs e)
         {
             loadSchedule();
+
         }
         private void btnTraXe_Click(object sender, EventArgs e)
         {
             DAO_Car dcar = new DAO_Car();
-            var id = dcar.getCarId(txtCarOfSchedule.Text);
-            saveStatusCar(id, dcar);
-            if (txtStateOfCar.Text == "Trống")
+            DialogResult dialog = MessageBox.Show("Bạn muốn xác nhận trả xe ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (dialog == DialogResult.OK)
             {
-                txtStateOfCar.Text = "Đã trả xe";
+                int id = int.Parse(txtIdCarOfSchedule.Text);
+                saveStatusCar(id, dcar);
+                MessageBox.Show("Trả xe hoàn tất");
+                loadCarList();
+                loadSchedule();
+
             }
-            loadCarList();
         }
 
         #endregion
@@ -289,15 +298,7 @@ namespace MidTerm
         #endregion
 
         #region Customer
-        private void btnExportCustomer_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.Filter = "Excel Workbook (*.xlsx)|*.xlsx|Excel 97-2003 Workbook (*.xls)|*.xls|All Files (*.*)|*.*";
-            if (saveFile.ShowDialog() == DialogResult.OK)
-            {
-                exportToExcel(dtgvCustomer, saveFile.FileName);
-            }
-        }
+
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
         {
@@ -427,59 +428,18 @@ namespace MidTerm
         }
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-
+            DAO_Bill dAO_Bill = new DAO_Bill();
+            DialogResult dialog = MessageBox.Show("Bạn muốn thanh toán hóa đơn này ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (dialog == DialogResult.OK)
+            {
+                changeStatusBill(int.Parse(txtIdBill.Text));
+                MessageBox.Show("Đã thanh toán");
+                loadBillInfo();
+            }
         }
         #endregion
 
         #region Method
-        private void exportToExcel(DataGridView dtgv, string filePath)
-        {
-            Microsoft.Office.Interop.Excel.Application excel;
-            Workbook workbook;
-            Worksheet worksheet;
-
-            try
-            {
-                excel = new Microsoft.Office.Interop.Excel.Application();
-                excel.Visible = false;
-                excel.DisplayAlerts = false;
-
-                workbook = excel.Workbooks.Add(Type.Missing);
-
-                worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets["Sheet1"];
-                worksheet.Name = "Danh sách khách hàng";
-
-                // export header
-                for (int i = 0; i < dtgv.ColumnCount; i++)
-                {
-                    worksheet.Cells[1, i + 1] = dtgv.Columns[i].HeaderText;
-                }
-
-                // export content
-                for (int i = 0; i < dtgv.RowCount; i++)
-                {
-                    for (int j = 0; j < dtgv.ColumnCount; j++)
-                    {
-                        worksheet.Cells[i + 2, j + 1] = dtgv.Rows[i].Cells[j].Value.ToString();
-                    }
-                }
-
-                // save workbook
-                workbook.SaveAs(filePath);
-                workbook.Close();
-                excel.Quit();
-                MessageBox.Show("Export successful.!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                workbook = null;
-                worksheet = null;
-            }
-        }
 
         private void changeStatusBill(int id)
         {
@@ -494,8 +454,70 @@ namespace MidTerm
 
         #endregion
 
+        private void dtgvBillInfo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (int.Parse(txtStatusNum.Text) == 1)
+            {
+                txtStatusOfBill.Text = "Đã thanh toán";
+                btnThanhToan.Enabled = false;
+            }
+            else
+            {
+                txtStatusOfBill.Text = "Chưa thanh toán";
+                btnThanhToan.Enabled = true;
+            }
+        }
 
+        private void dtgvSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int columnIndex = dtgvSchedule.CurrentCell.ColumnIndex;
+            string columnName = dtgvSchedule.Columns[columnIndex].Name;
+            MessageBox.Show(columnName);
+        }
 
-        
+        private void dtgvSchedule_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int colIndex = dtgvSchedule.GetCellCount(DataGridViewElementStates.Selected);
+            int rowIndex = dtgvSchedule.CurrentCell.RowIndex;
+            DataGridViewRow row = dtgvSchedule.Rows[rowIndex];
+            string valueState = row.Cells[colIndex - 1].Value.ToString();
+            if (valueState == "Trống")
+            {
+                txtStateOfCar.Text = "Đã trả xe";
+                btnTraXe.Enabled = false;
+            }
+            else
+            {
+                txtStateOfCar.Text = valueState;
+                btnTraXe.Enabled = true;
+            }
+        }
+
+        private void btnSearchSchedule_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtSearchSchedule.Text))
+            {
+                MessageBox.Show("Cần nhập thông tin để tìm kiếm");
+                loadSchedule();
+                return;
+            }
+            else
+            {
+                var result = bllSchedule.searchSchedule(txtSearchSchedule.Text);
+                if (result.Count != 0)
+                {
+                    dtgvSchedule.DataSource = null;
+                    scheduleList.Clear();
+                    scheduleList.DataSource = result;
+                    dtgvSchedule.DataSource = scheduleList;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy thông tin cần tìm kiếm");
+                    loadSchedule();
+                    return;
+                }
+            }
+        }
     }
 }
